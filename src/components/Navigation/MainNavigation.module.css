@@ -1,0 +1,52 @@
+.container {
+	display: flex;
+	justify-content: center;
+	position: relative;
+	margin-bottom: var(--spacing-11);
+}
+
+.navigation {
+	background-color: var(--color-nav-bg);
+	display: flex;
+	gap: var(--spacing-6);
+	padding: 0 var(--spacing-5);
+	padding-bottom: var(--spacing-4);
+	border-radius: 0 0 var(--spacing-7) var(--spacing-7);
+}
+
+.link:link,
+.link:visited,
+.active:link,
+.active:visited {
+	font-size: var(--font-6);
+	padding: var(--spacing-4) var(--spacing-6);
+	border-radius: 0 0 var(--spacing-7) var(--spacing-7);
+	text-decoration: none;
+	color: black;
+}
+.link:hover {
+	background-color: var(--color-nav-hover);
+}
+.link:active {
+	background-color: var(--color-nav-click);
+}
+.active:link,
+.active:visited,
+.active:hover,
+.active:active {
+	box-shadow: 0 var(--spacing-2) var(--spacing-3) rgba(0, 0, 0, 0.1);
+	text-decoration: none;
+	color: black;
+	background-color: var(--color-nav-curr);
+}
+
+.authorisation {
+	position: absolute;
+	background-color: red;
+	right: 0;
+}
+.authorisation a:link,
+.authorisation a:visited {
+	text-decoration: none;
+	color: black;
+}

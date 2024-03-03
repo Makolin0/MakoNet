@@ -1,0 +1,65 @@
+@keyframes slideDown {
+	from {
+		transform: translateY(-6000px);
+	}
+
+	to {
+		transform: translateY(0);
+	}
+}
+
+.items {
+	animation: slideDown 10s ease-out;
+	transform: translateZ(1px);
+}
+
+.window {
+	position: relative;
+	border: 10px solid #0681b1;
+	border-radius: 14px;
+	width: 300px;
+	height: 500px;
+	overflow: hidden;
+	margin: 0 auto;
+	background: linear-gradient(#fca311, #ffcb77);
+}
+
+.mark {
+	position: absolute;
+	top: 0;
+	font-size: 24px;
+	width: 300px;
+}
+.mark li:last-child {
+	border-top: 2px solid #0681b1;
+	border-bottom: 2px solid #0681b1;
+}
+
+.container {
+	width: fit-content;
+	margin: 0 auto;
+	justify-content: center;
+}
+
+.title {
+	font-size: 80px;
+}
+
+.button {
+	border: 0;
+	padding: 8px 16px;
+	font-size: 20px;
+	background-color: #0681b1;
+	border-radius: 0 0 20px 20px;
+}
+.button:hover {
+	background-color: #06729d;
+}
+.button:active {
+	background-color: #05648a;
+}
+
+.buttoncontainer {
+	display: flex;
+	justify-content: space-around;
+}
