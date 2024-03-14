@@ -37,6 +37,8 @@
 .project img {
 	font-size: var(--font-4);
 	margin-bottom: var(--spacing-4);
+	max-width: 100%;
+	max-height: 20rem;
 }
 .project p {
 	font-size: var(--font-6);

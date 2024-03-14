@@ -1,0 +1,36 @@
+.container {
+	text-align: center;
+	max-width: 60rem;
+	margin: 0 auto;
+	display: grid;
+	grid-template-rows: 1fr auto;
+	grid-template-columns: auto;
+	background-color: var(--color-featured-bg);
+	border-radius: var(--spacing-7);
+	padding: var(--spacing-7) var(--spacing-9);
+}
+
+.nick {
+	font-size: var(--font-7);
+	max-width: 100%;
+	justify-self: center;
+}
+
+.buttonContainer {
+	display: flex;
+	justify-content: center;
+}
+.buttonContainer input,
+.buttonContainer button {
+	font-size: var(--font-7);
+	padding: var(--spacing-3) var(--spacing-5);
+	border: 0;
+}
+
+.buttonContainer input {
+	border-radius: 100rem 0 0 100rem;
+}
+.buttonContainer button {
+	border-radius: 0 100rem 100rem 0;
+	background-color: var(--color-featured-button);
+}

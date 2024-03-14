@@ -1,0 +1,42 @@
+.container {
+	max-width: 80rem;
+	min-height: 60rem;
+	margin: 0 auto;
+	display: grid;
+	grid-template-rows: auto auto 1fr;
+	grid-template-columns: auto;
+	background-color: var(--color-featured-bg);
+	border-radius: var(--spacing-7);
+	padding: var(--spacing-7) var(--spacing-9);
+}
+.container h1 {
+	text-align: center;
+	max-height: 10rem;
+}
+
+.inputContainer {
+	display: flex;
+	gap: var(--spacing-4);
+	margin-bottom: var(--spacing-5);
+}
+.inputContainer textarea {
+	font-size: var(--font-6);
+	border: 0;
+	resize: none;
+}
+.inputContainer button {
+	font-size: var(--font-7);
+	border: 0;
+	padding: var(--spacing-3) var(--spacing-5);
+}
+
+.container ol {
+	list-style: none;
+	display: grid;
+	gap: var(--spacing-3);
+	align-content: start;
+}
+.container li p {
+	font-size: var(--font-6);
+	padding-left: var(--spacing-4);
+}
