@@ -1,5 +1,3 @@
--add modal component
--add toast component
 -create design in figma
 -update css with animations
 -better lootbox with popups and better animations
@@ -7,6 +5,7 @@
 -projects list
 -about me page
 -registration with login
+-lootboxed tied with account, see history, marked as recieved
 -update chat with login, add guest
 -add ranking to countdown game
 -create chess game online (big)

@@ -2,6 +2,7 @@ import { useState } from "react";
 import LootList from "./LootList";
 import classes from "./Roulette.module.css";
 import generateLoot from "../../functions/generateLoot";
+import Chances from "./Chances";
 
 export default function Roulette() {
 	const [isAnimated, setIsAnimated] = useState(false);
@@ -27,6 +28,7 @@ export default function Roulette() {
 
 	return (
 		<main className={classes.container}>
+			<Chances />
 			<h1 className={classes.title}>Lootboxy</h1>
 			<div className={classes.window}>
 				<ol className={classes.mark}>
