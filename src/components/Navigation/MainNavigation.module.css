@@ -41,12 +41,42 @@
 }
 
 .authorisation {
+	background-color: var(--color-nav-login);
+	padding: var(--spacing-4);
+	padding-top: 0;
+	padding-right: 0;
+	gap: var(--spacing-3);
+	border-radius: 0 0 0 var(--spacing-6);
+	display: flex;
 	position: absolute;
-	background-color: red;
 	right: 0;
 }
-.authorisation a:link,
-.authorisation a:visited {
+.linkLogin:link,
+.linkLogin:visited,
+.activeLogin:link,
+.activeLogin:visited,
+.linkRegister:link,
+.linkRegister:visited,
+.activeRegister:link,
+.activeRegister:visited {
 	text-decoration: none;
-	color: black;
+	color: var(--color-text-dark);
+	font-size: var(--font-6);
+	padding: var(--spacing-4) var(--spacing-6);
+}
+.linkRegister:link,
+.linkRegister:visited {
+	background-color: var(--color-nav-register);
+	border-radius: 0 0 0 var(--spacing-6);
+}
+
+.activeLogin:link,
+.activeLogin:visited {
+	background-color: var(--color-nav-curr);
+	border-radius: 0 0 var(--spacing-6) var(--spacing-6);
+}
+.activeRegister:link,
+.activeRegister:visited {
+	background-color: var(--color-nav-curr);
+	border-radius: 0 0 0 var(--spacing-6);
 }

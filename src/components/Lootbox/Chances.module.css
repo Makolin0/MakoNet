@@ -8,22 +8,26 @@
 }
 
 .list {
-	background-color: white;
+	min-width: 20rem;
+	background-color: var(--color-lootbox-chances-bg);
 	border-radius: 0 10px 10px 0;
-	padding: var(--spacing-3) var(--spacing-6);
+	padding: var(--spacing-5) var(--spacing-7);
 }
 .list > ol {
 	list-style: none;
 }
 .list > ol > li {
-	border-bottom: 1px solid gray;
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid var(--color-text-dark);
+	font-size: var(--font-7);
 }
 .list > ol > li:last-child {
 	border-bottom: 0;
 }
 
 .sidebar > button {
-	background-color: white;
+	background-color: var(--color-lootbox-chances-bg);
 	border: 0;
 	padding: var(--spacing-5) var(--spacing-1);
 	border-radius: 0 10px 10px 0;

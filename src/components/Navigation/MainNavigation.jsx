@@ -34,24 +34,26 @@ export default function MainNavigation() {
 					About Me
 				</NavLink>
 			</nav>
-			{/* <nav className={classes.authorisation}>
+			<nav className={classes.authorisation}>
 				<NavLink
-					to="/auth"
+					to="/login"
 					className={({ isActive }) =>
-						isActive ? classes.active : classes.link
+						isActive ? classes.activeLogin : classes.linkLogin
 					}
 					end
 				>
 					Log in
 				</NavLink>
 				<NavLink
-					to="/auth?sign"
-					className={({ isActive }) => (isActive ? classes.active : undefined)}
+					to="/register"
+					className={({ isActive }) =>
+						isActive ? classes.activeRegister : classes.linkRegister
+					}
 					end
 				>
 					Sign in
 				</NavLink>
-			</nav> */}
+			</nav>
 		</div>
 	);
 }

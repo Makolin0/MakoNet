@@ -19,17 +19,42 @@ export default function Chances() {
 		<section className={classes.sidebar}>
 			<div className={classes.list} style={!showList ? hidden : undefined}>
 				<ol>
-					<li>OP 0,5%</li>
-					<li>OP 0,5%</li>
-					<li>OP 0,5%</li>
-					<li>OP 0,5%</li>
-					<li>OP 0,5%</li>
-					<li>OP 0,5%</li>
-					<li>OP 0,5%</li>
-					<li>OP 0,5%</li>
-					<li>OP 0,5%</li>
-					<li>OP 0,5%</li>
-					<li>OP 0,5%</li>
+					<li>
+						<p>OP</p>
+						<p>0,5%</p>
+					</li>
+					<li>
+						<p>OP</p>
+						<p>0,5%</p>
+					</li>
+					<li>
+						<p>OP</p>
+						<p>0,5%</p>
+					</li>
+					<li>
+						<p>OP</p>
+						<p>0,5%</p>
+					</li>
+					<li>
+						<p>OP</p>
+						<p>0,5%</p>
+					</li>
+					<li>
+						<p>OP</p>
+						<p>0,5%</p>
+					</li>
+					<li>
+						<p>OP</p>
+						<p>0,5%</p>
+					</li>
+					<li>
+						<p>OP</p>
+						<p>0,5%</p>
+					</li>
+					<li>
+						<p>OP</p>
+						<p>0,5%</p>
+					</li>
 				</ol>
 			</div>
 			<button onClick={buttonHandler}>

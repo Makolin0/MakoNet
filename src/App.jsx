@@ -6,13 +6,14 @@ import ErrorPage from "./pages/Error";
 import HomePage from "./pages/Home";
 import ProjectsPage from "./pages/Projects";
 import AboutMePage from "./pages/About";
-import AuthorisationPage from "./pages/Authorisation";
 import LootboxPage from "./pages/Lootbox";
 import RootLayoutExperiments from "./pages/Experiments/Root";
 import GetTextPage, { getTextLoader } from "./pages/Experiments/GetText";
 import ChatPage from "./pages/Chat";
 
 import "./init";
+import LoginPage from "./pages/Login";
+import RegisterPage from "./pages/Register";
 
 const router = createBrowserRouter([
 	{
@@ -23,7 +24,8 @@ const router = createBrowserRouter([
 			{ index: true, element: <HomePage /> },
 			{ path: "projects", element: <ProjectsPage /> },
 			{ path: "about", element: <AboutMePage /> },
-			{ path: "auth", element: <AuthorisationPage /> },
+			{ path: "login", element: <LoginPage /> },
+			{ path: "register", element: <RegisterPage /> },
 			{ path: "lootbox", element: <LootboxPage /> },
 			{ path: "chat", element: <ChatPage /> },
 			{

@@ -1,6 +1,6 @@
 @keyframes slideDown {
 	from {
-		transform: translateY(-6000px);
+		transform: translateY(-900rem);
 	}
 
 	to {
@@ -11,52 +11,71 @@
 .items {
 	animation: slideDown 10s ease-out;
 	transform: translateZ(1px);
+	list-style: none;
+}
+
+.lootContainer {
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-template-rows: auto auto;
+
+	--draw-width: 100px;
+	transform: translateX(calc(-1 / 2 * var(--draw-width)));
+}
+.lootContainer > .count {
+	font-size: var(--font-6);
+	padding: var(--spacing-3) var(--spacing-6);
+	text-align: center;
+	grid-area: 2/2/3/3;
+	background-color: var(--color-lootbox-border);
+	align-self: start;
+	justify-self: center;
+	border-radius: 0 0 10px 10px;
+}
+.lootContainer > .count > p {
+	font-size: var(--font-8);
+}
+.lootContainer > .drawButton {
+	color: var(--color-text-dark);
+	width: var(--draw-width);
+	border: 0;
+	padding: var(--spacing-6) var(--spacing-6);
+	font-size: 20px;
+	background-color: var(--color-lootbox-border);
+	border-radius: 100px 0 0 100px;
+	align-self: center;
+}
+.lootContainer > .drawButton:hover {
+	background-color: #06729d;
+}
+.lootContainer > .drawButton:active {
+	background-color: #05648a;
 }
 
 .window {
 	position: relative;
-	border: 10px solid #0681b1;
-	border-radius: 14px;
-	width: 300px;
-	height: 500px;
+	border: 1rem solid var(--color-lootbox-border);
+	border-radius: 1rem;
+	width: 40rem;
+	height: 50rem;
 	overflow: hidden;
 	margin: 0 auto;
-	background: linear-gradient(#fca311, #ffcb77);
-}
-
-.mark {
-	position: absolute;
-	top: 0;
-	font-size: 24px;
-	width: 300px;
-}
-.mark li:last-child {
-	border-top: 2px solid #0681b1;
-	border-bottom: 2px solid #0681b1;
+	background: var(--color-lootbox-bg);
+	padding: 0 var(--spacing-8);
 }
 
 .container {
-	width: fit-content;
-	margin: 0 auto;
+	display: grid;
 	justify-content: center;
+	justify-items: center;
+	/* width: fit-content;
+	margin: 0 auto;
+	justify-content: center; */
 }
 
 .title {
 	font-size: 80px;
-}
-
-.button {
-	border: 0;
-	padding: 8px 16px;
-	font-size: 20px;
-	background-color: #0681b1;
-	border-radius: 0 0 20px 20px;
-}
-.button:hover {
-	background-color: #06729d;
-}
-.button:active {
-	background-color: #05648a;
+	color: var(--color-text-light);
 }
 
 .buttoncontainer {

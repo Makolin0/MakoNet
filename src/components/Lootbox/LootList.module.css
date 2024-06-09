@@ -1,4 +1,22 @@
 .item {
+	background-color: white;
+	border-radius: 1rem;
+	font-size: var(--font-7);
 	text-align: center;
-	font-size: 24px;
+
+	margin-bottom: var(--spacing-4);
+}
+
+.legend {
+	background-color: orange;
+}
+
+.epic {
+	background-color: purple;
+}
+.uncommon {
+	background-color: blue;
+}
+.common {
+	background-color: green;
 }
