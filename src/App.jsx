@@ -7,13 +7,12 @@ import HomePage from "./pages/Home";
 import ProjectsPage from "./pages/Projects";
 import AboutMePage from "./pages/About";
 import LootboxPage from "./pages/Lootbox";
-import RootLayoutExperiments from "./pages/Experiments/Root";
-import GetTextPage, { getTextLoader } from "./pages/Experiments/GetText";
 import ChatPage from "./pages/Chat";
 
 import "./init";
-import LoginPage from "./pages/Login";
+import LoginPage, { loginAction } from "./pages/Login";
 import RegisterPage from "./pages/Register";
+import TestsPage from "./pages/Tests";
 
 const router = createBrowserRouter([
 	{
@@ -24,18 +23,11 @@ const router = createBrowserRouter([
 			{ index: true, element: <HomePage /> },
 			{ path: "projects", element: <ProjectsPage /> },
 			{ path: "about", element: <AboutMePage /> },
-			{ path: "login", element: <LoginPage /> },
+			{ path: "login", element: <LoginPage />, action: loginAction },
 			{ path: "register", element: <RegisterPage /> },
 			{ path: "lootbox", element: <LootboxPage /> },
 			{ path: "chat", element: <ChatPage /> },
-			{
-				path: "exp",
-				element: <RootLayoutExperiments />,
-				children: [
-					{ index: true, element: <HomePage /> },
-					{ path: "gettext", element: <GetTextPage />, loader: getTextLoader },
-				],
-			},
+			{ path: "tests", element: <TestsPage /> },
 		],
 	},
 ]);

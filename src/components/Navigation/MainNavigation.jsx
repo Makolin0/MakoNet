@@ -33,6 +33,15 @@ export default function MainNavigation() {
 				>
 					About Me
 				</NavLink>
+				<NavLink
+					to="/tests"
+					className={({ isActive }) =>
+						isActive ? classes.active : classes.link
+					}
+					end
+				>
+					tests
+				</NavLink>
 			</nav>
 			<nav className={classes.authorisation}>
 				<NavLink

@@ -15,15 +15,20 @@
 }
 .inputContainer {
 	display: grid;
-	gap: var(--spacing-4);
 }
 .inputContainer > input {
 	border: 2px solid var(--color-auth-border);
 	background-color: var(--color-auth-input);
 
+	margin-bottom: var(--spacing-5);
 	border-radius: var(--spacing-4);
 	font-size: var(--font-5);
 	padding: var(--spacing-2) var(--spacing-4);
+}
+.inputContainer > .errorInput {
+	color: rgb(209, 58, 58);
+	font-size: var(--font-4);
+	justify-self: start;
 }
 
 .form > button {
@@ -53,8 +58,10 @@
 	padding: var(--spacing-4) var(--spacing-5);
 	border-radius: var(--spacing-6);
 }
-.register > button {
+.register > a {
 	background-color: var(--color-auth-button);
+	color: var(--color-text-dark);
+	text-decoration: none;
 
 	border: 0;
 	font-size: var(--font-6);
