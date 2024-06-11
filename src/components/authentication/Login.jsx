@@ -22,39 +22,42 @@ export default function Login() {
 		validationSchema: validationSchema,
 	});
 
-	console.log(formik);
 	return (
 		<main className={classes.container}>
-			<Form method="POST" className={classes.form}>
+			<div className={classes.login}>
 				<h1>Login</h1>
-				<div className={classes.inputContainer}>
-					{formik.errors.email && formik.touched.email && (
-						<p className={classes.errorInput}>{formik.errors.email}</p>
-					)}
-					<input
-						id="email"
-						name="email"
-						type="text"
-						placeholder="Email"
-						onChange={formik.handleChange}
-						onBlur={formik.handleBlur}
-						value={formik.values.email}
-					/>
-					{formik.errors.password && formik.touched.password && (
-						<p className={classes.errorInput}>{formik.errors.password}</p>
-					)}
-					<input
-						id="password"
-						name="password"
-						type="password"
-						placeholder="Password"
-						onChange={formik.handleChange}
-						onBlur={formik.handleBlur}
-						value={formik.values.password}
-					/>
-				</div>
-				<button type="submit">login</button>
-			</Form>
+				<Form method="POST" className={classes.form}>
+					<div className={classes.inputContainer}>
+						{formik.errors.email && formik.touched.email && (
+							<p className={classes.errorInput}>{formik.errors.email}</p>
+						)}
+						<input
+							id="email"
+							name="email"
+							type="text"
+							placeholder="Email"
+							onChange={formik.handleChange}
+							onBlur={formik.handleBlur}
+							value={formik.values.email}
+						/>
+						{formik.errors.password && formik.touched.password && (
+							<p className={classes.errorInput}>{formik.errors.password}</p>
+						)}
+						<input
+							id="password"
+							name="password"
+							type="password"
+							placeholder="Password"
+							onChange={formik.handleChange}
+							onBlur={formik.handleBlur}
+							value={formik.values.password}
+						/>
+					</div>
+					<button type="submit" disabled={!(formik.isValid && formik.dirty)}>
+						login
+					</button>
+				</Form>
+			</div>
 			<section className={classes.register}>
 				<p>No account?</p>
 				<Link to="/register" className={classes.registerLink}>

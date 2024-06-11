@@ -81,10 +81,11 @@ body {
 	--color-lootbox-bg: #6d676e;
 	--color-lootbox-chances-bg: #009fb8;
 
-	--color-auth-bg: #00c2e0;
-	--color-auth-border: #008da3;
+	--color-auth-bg: #0681b1;
+	--color-auth-form: #ffcb77;
+	--color-auth-border: #ffb947;
 	--color-auth-input: #f5f5f5;
-	--color-auth-button: #fda821;
+	--color-auth-button: #f29602;
 	--color-auth-button-hover: #fda10d;
 	--color-auth-button-click: #f29602;
 }

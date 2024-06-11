@@ -2,6 +2,7 @@ import { redirect } from "react-router";
 import Login from "../components/authentication/Login";
 import { getBackendUrl } from "../data/urls";
 import toast from "react-hot-toast";
+import { saveToken } from "../data/tokens";
 
 export default function LoginPage() {
 	return <Login />;
@@ -13,8 +14,6 @@ export async function loginAction({ request }) {
 		email: data.get("email"),
 		password: data.get("password"),
 	};
-	console.log("action data");
-	console.log(credentials);
 
 	const response = await fetch(getBackendUrl() + "/auth/login", {
 		method: "POST",
@@ -26,12 +25,12 @@ export async function loginAction({ request }) {
 
 	if (response.status !== 200) {
 		toast.error("Could not log in");
+		return redirect("/login");
 	}
 
 	const responseData = await response.json();
-	console.log(responseData.token);
 
-	localStorage.setItem("token", responseData.token);
+	saveToken(responseData.token);
 
 	return redirect("/");
 }

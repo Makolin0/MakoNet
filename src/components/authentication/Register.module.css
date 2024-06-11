@@ -19,6 +19,10 @@
 	grid-area: 2 / 1 / 3 / 2;
 }
 .form {
+	background-color: var(--color-auth-form);
+	padding: var(--spacing-6);
+	border-radius: var(--spacing-6);
+
 	grid-area: 1 / 2 / 3 / 3;
 	display: grid;
 	gap: var(--spacing-4);
