@@ -6,7 +6,7 @@ import ErrorPage from "./pages/Error";
 import HomePage from "./pages/Home";
 import ProjectsPage from "./pages/Projects";
 import AboutMePage from "./pages/About";
-import LootboxPage from "./pages/Lootbox";
+import LootboxPage, { lootboxLoader } from "./pages/Lootbox";
 import ChatPage from "./pages/Chat";
 
 import "./init";
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
 			{ path: "login", element: <LoginPage />, action: loginAction },
 			{ path: "register", element: <RegisterPage />, action: registerAction },
 			{ path: "logout", action: logoutAction },
-			{ path: "lootbox", element: <LootboxPage /> },
+			{ path: "lootbox", element: <LootboxPage />, loader: lootboxLoader },
 			{ path: "chat", element: <ChatPage /> },
 			{ path: "tests", element: <TestsPage /> },
 		],

@@ -23,6 +23,10 @@ export async function registerAction({ request }) {
 		body: JSON.stringify(credentials),
 	});
 
+	if (response.status === 400) {
+		toast.error("Account with that email already exists");
+		return redirect("/register");
+	}
 	if (response.status !== 200) {
 		toast.error("Could not log in");
 		return redirect("/register");
