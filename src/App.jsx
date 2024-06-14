@@ -16,6 +16,7 @@ import TestsPage from "./pages/Tests";
 import { logoutAction, tokenLoader } from "./data/tokens";
 import UserContextProvider from "./data/UserContext";
 import LootboxListPage, { LootboxListLoader } from "./pages/admin/LootboxList";
+import UserListPage, { UserListLoader } from "./pages/admin/UserList";
 
 const router = createBrowserRouter([
 	{
@@ -41,6 +42,11 @@ const router = createBrowserRouter([
 						path: "lootbox",
 						element: <LootboxListPage />,
 						loader: LootboxListLoader,
+					},
+					{
+						path: "users",
+						element: <UserListPage />,
+						loader: UserListLoader,
 					},
 				],
 			},

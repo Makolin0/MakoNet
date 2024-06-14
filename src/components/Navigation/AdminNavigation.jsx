@@ -15,6 +15,15 @@ export default function AdminNavigation() {
 				>
 					Lootbox List
 				</NavLink>
+				<NavLink
+					to="/admin/users"
+					className={({ isActive }) =>
+						isActive ? classes.active : classes.link
+					}
+					end
+				>
+					Users List
+				</NavLink>
 			</nav>
 		</div>
 	);
