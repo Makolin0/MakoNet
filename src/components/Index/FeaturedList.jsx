@@ -6,8 +6,6 @@ import classes from "./FeaturedList.module.css";
 const FEATURED_DATA = FEATURED;
 
 export default function FeaturedList() {
-	console.log("FEATURED_DATA");
-	console.log(FEATURED_DATA);
 
 	return (
 		<div className={classes.container}>
@@ -15,9 +13,6 @@ export default function FeaturedList() {
 				<h1>Featured Projects</h1>
 				<ol className={classes.listContainer}>
 					{FEATURED_DATA.map((projectData, index) => {
-						console.log("index");
-						console.log(index);
-						console.log(projectData);
 						return (
 							<FeaturedProject
 								key={index}

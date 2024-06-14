@@ -9,8 +9,6 @@ export default function MainNavigation() {
 	const { userInfo } = useContext(UserContext);
 	const token = useRouteLoaderData("root");
 
-	console.log("userInfo");
-	console.log(userInfo);
 
 	return (
 		<div className={classes.container}>
@@ -41,15 +39,6 @@ export default function MainNavigation() {
 					end
 				>
 					About Me
-				</NavLink>
-				<NavLink
-					to="/tests"
-					className={({ isActive }) =>
-						isActive ? classes.active : classes.link
-					}
-					end
-				>
-					tests
 				</NavLink>
 			</nav>
 			{token ? (

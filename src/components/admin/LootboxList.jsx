@@ -24,8 +24,6 @@ export default function LootboxList() {
 		if (response.status !== 200) {
 			toast.error("Error while sending mark info");
 		} else {
-			const responseData = await response.text();
-			console.log(responseData);
 			setLootboxList((prev) => {
 				let swapped = [...prev];
 				swapped.find((x) => x.id === id).received = true;

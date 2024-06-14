@@ -16,11 +16,8 @@ export default function Roulette() {
 	const [historyHidden, setHistoryHidden] = useState(true);
 	const [lootboxData, setLootboxData] = useState(useLoaderData());
 
-	console.log("lootbox data");
-	console.log(lootboxData);
 
 	async function fetchDraw() {
-		console.log("skibidi");
 		const token = getToken();
 		const response = await fetch(getBackendUrl() + "/user/lootbox", {
 			method: "POST",
@@ -29,14 +26,9 @@ export default function Roulette() {
 			},
 		});
 		if (response.status !== 200) {
-			console.log(response);
-			console.log("nie udalo");
 			toast.error("Nie udało się pobrać rezultatu");
 		} else {
-			console.log("udalo sie");
 			const responseData = await response.json();
-			console.log("Draw");
-			console.log(responseData);
 			return responseData;
 		}
 	}
@@ -51,8 +43,6 @@ export default function Roulette() {
 			const drawResponse = await fetchDraw();
 			const drawList = drawResponse.fillerList;
 			drawList[5] = drawResponse.reward;
-			console.log("modified");
-			console.log(drawList);
 
 			setList(drawList);
 			setReward(drawResponse.reward);
@@ -62,8 +52,6 @@ export default function Roulette() {
 				setIsAnimated(false);
 				setPopupHidden(false);
 				setLootboxData((prev) => {
-					console.log("prev");
-					console.log(prev);
 					return {
 						available: prev.available - 1,
 						openedList: [...prev.openedList, drawResponse.reward],
