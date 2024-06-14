@@ -38,7 +38,7 @@ export default function RootLayout() {
 	return (
 		<>
 			<MainNavigation />
-			{(userInfo.role === "ADMIN" || userInfo.role === "GOD") && (
+			{(userInfo?.role === "ADMIN" || userInfo?.role === "GOD") && (
 				<AdminNavigation />
 			)}
 			<Outlet />

@@ -79,24 +79,26 @@ export default function Roulette() {
 				<h2>Wygrałeś</h2>
 				<h4>{reward.reward}</h4>
 			</Popup>
-			<Popup isHidden={historyHidden} onClose={() => setHistoryHidden(true)}>
-				<h2>Historia</h2>
-				{lootboxData.openedList.length < 1 ? (
-					<p>Pusto</p>
-				) : (
-					<ol>
-						{lootboxData.openedList.map((item, index) => (
-							<li key={index}>
-								{item.reward} {item.rarity}
-							</li>
-						))}
-					</ol>
-				)}
-			</Popup>
+			{lootboxData && (
+				<Popup isHidden={historyHidden} onClose={() => setHistoryHidden(true)}>
+					<h2>Historia</h2>
+					{lootboxData.openedList.length < 1 ? (
+						<p>Pusto</p>
+					) : (
+						<ol>
+							{lootboxData.openedList.map((item, index) => (
+								<li key={index}>
+									{item.reward} {item.rarity}
+								</li>
+							))}
+						</ol>
+					)}
+				</Popup>
+			)}
 			<Chances />
 			<main className={classes.container}>
 				<h1 className={classes.title}>Lootboxy</h1>
-				{!lootboxData && <p>Wersja demo</p>}
+				{!lootboxData && <p>Wersja demo(nie działa, trzeba sie zalogować)</p>}
 				<div className={classes.lootContainer}>
 					<button className={classes.drawButton} onClick={buttonHandler}>
 						{isAnimated ? "Losuję..." : "Losuj"}
@@ -110,13 +112,15 @@ export default function Roulette() {
 						Pozostalo<p>{lootboxData ? lootboxData?.available : "X"}</p>
 					</div>
 				</div>
-				<button
-					onClick={() => {
-						setHistoryHidden(false);
-					}}
-				>
-					Historia
-				</button>
+				{lootboxData && (
+					<button
+						onClick={() => {
+							setHistoryHidden(false);
+						}}
+					>
+						Historia
+					</button>
+				)}
 			</main>
 		</>
 	);

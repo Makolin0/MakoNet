@@ -15,6 +15,7 @@ import RegisterPage, { registerAction } from "./pages/Register";
 import TestsPage from "./pages/Tests";
 import { logoutAction, tokenLoader } from "./data/tokens";
 import UserContextProvider from "./data/UserContext";
+import LootboxListPage, { LootboxListLoader } from "./pages/admin/LootboxList";
 
 const router = createBrowserRouter([
 	{
@@ -33,6 +34,16 @@ const router = createBrowserRouter([
 			{ path: "lootbox", element: <LootboxPage />, loader: lootboxLoader },
 			{ path: "chat", element: <ChatPage /> },
 			{ path: "tests", element: <TestsPage /> },
+			{
+				path: "admin",
+				children: [
+					{
+						path: "lootbox",
+						element: <LootboxListPage />,
+						loader: LootboxListLoader,
+					},
+				],
+			},
 		],
 	},
 ]);
