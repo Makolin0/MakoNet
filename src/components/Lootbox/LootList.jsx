@@ -6,7 +6,7 @@ export default function LootList({ list }) {
 			{list.map((elem, index) => {
 				return (
 					<li key={index} className={classes.item}>
-						{elem}
+						{elem.reward}
 					</li>
 				);
 			})}
