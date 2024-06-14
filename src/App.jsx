@@ -14,6 +14,7 @@ import LoginPage, { loginAction } from "./pages/Login";
 import RegisterPage, { registerAction } from "./pages/Register";
 import TestsPage from "./pages/Tests";
 import { logoutAction, tokenLoader } from "./data/tokens";
+import UserContextProvider from "./data/UserContext";
 
 const router = createBrowserRouter([
 	{
@@ -37,7 +38,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-	return <RouterProvider router={router} />;
+	return (
+		<UserContextProvider>
+			<RouterProvider router={router} />
+		</UserContextProvider>
+	);
 }
 
 export default App;

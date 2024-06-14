@@ -2,40 +2,15 @@ import { NavLink, useRouteLoaderData } from "react-router-dom";
 
 import classes from "./MainNavigation.module.css";
 import { Form } from "react-router-dom";
-import { useContext, useEffect } from "react";
-import { getBackendUrl } from "../../data/urls";
-import toast from "react-hot-toast";
+import { useContext } from "react";
 import { UserContext } from "../../data/UserContext";
 
 export default function MainNavigation() {
-	const { userInfo, setInfo } = useContext(UserContext);
+	const { userInfo } = useContext(UserContext);
 	const token = useRouteLoaderData("root");
 
-	useEffect(() => {
-		async function getUserInfo() {
-			if (token !== null) {
-				console.log("jest uzytkownik");
-
-				const response = await fetch(getBackendUrl() + "/user/info", {
-					headers: {
-						Authorization: "Bearer " + token,
-					},
-				});
-				if (response.status !== 200) {
-					toast.error("Error while getting user info");
-				} else {
-					const responseData = await response.json();
-					console.log(responseData);
-					setInfo(
-						responseData.username,
-						responseData.nickname,
-						responseData.role
-					);
-				}
-			}
-		}
-		getUserInfo();
-	}, [token]);
+	console.log("userInfo");
+	console.log(userInfo);
 
 	return (
 		<div className={classes.container}>
