@@ -19,27 +19,52 @@
 .link:link,
 .link:visited,
 .active:link,
-.active:visited {
+.active:visited,
+.linkRegister:link,
+.linkRegister:visited,
+.logout > button,
+.logout > p {
+	z-index: 1;
+	position: relative;
 	font-size: var(--font-6);
 	padding: var(--spacing-4) var(--spacing-6);
 	border-radius: 0 0 var(--spacing-7) var(--spacing-7);
+	border: 0;
 	text-decoration: none;
-	color: black;
+	color: var(--color-text-dark);
 }
-.link:hover {
+.link::after,
+.active::after {
+	transition-property: background-color transform box-shadow;
+	transition-duration: 200ms;
+	transition-timing-function: linear;
+	z-index: -1;
+	position: absolute;
+	content: "";
+	inset: 0;
+	border-radius: 0 0 var(--spacing-7) var(--spacing-7);
+
+	opacity: 0;
+	visibility: hidden;
+}
+.link::after {
+	transform: translateY(-1rem);
+}
+.link:hover::after {
+	transform: translateY(0);
+	box-shadow: 0 var(--spacing-2) var(--spacing-3) rgba(0, 0, 0, 0.2);
 	background-color: var(--color-nav-hover);
+	opacity: 1;
+	visibility: visible;
 }
-.link:active {
+.link:active::after {
 	background-color: var(--color-nav-click);
 }
-.active:link,
-.active:visited,
-.active:hover,
-.active:active {
-	box-shadow: 0 var(--spacing-2) var(--spacing-3) rgba(0, 0, 0, 0.1);
-	text-decoration: none;
-	color: black;
+.active::after {
+	box-shadow: 0 var(--spacing-2) var(--spacing-3) rgba(0, 0, 0, 0.2);
 	background-color: var(--color-nav-curr);
+	opacity: 1;
+	visibility: visible;
 }
 
 .authorisation,
@@ -54,37 +79,24 @@
 	position: absolute;
 	right: 0;
 }
-.linkLogin:link,
-.linkLogin:visited,
-.activeLogin:link,
-.activeLogin:visited,
-.linkRegister:link,
-.linkRegister:visited,
-.activeRegister:link,
-.activeRegister:visited,
-.logout > button {
-	text-decoration: none;
-	color: var(--color-text-dark);
-	font-size: var(--font-6);
-	padding: var(--spacing-4) var(--spacing-6);
-	border: 0;
-}
+
 .linkRegister:link,
 .linkRegister:visited,
 .logout > button {
+	transition-property: background-color transform box-shadow;
+	transition-duration: 200ms;
+	transition-timing-function: linear;
 	background-color: var(--color-nav-register);
 	border-radius: 0 0 0 var(--spacing-6);
 }
-
-.activeLogin:link,
-.activeLogin:visited {
-	background-color: var(--color-nav-curr);
-	border-radius: 0 0 var(--spacing-6) var(--spacing-6);
+.linkRegister:hover,
+.logout > button:hover {
+	background-color: var(--color-nav-register-hover);
 }
+
 .activeRegister:link,
 .activeRegister:visited {
 	background-color: var(--color-nav-curr);
-	border-radius: 0 0 0 var(--spacing-6);
 }
 .logout > button {
 }

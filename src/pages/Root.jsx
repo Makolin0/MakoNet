@@ -31,6 +31,8 @@ export default function RootLayout() {
 						responseData.role
 					);
 				}
+			} else {
+				setInfo(null);
 			}
 		}
 		getUserInfo();

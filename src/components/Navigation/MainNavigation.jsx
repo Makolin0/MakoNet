@@ -9,35 +9,26 @@ export default function MainNavigation() {
 	const { userInfo } = useContext(UserContext);
 	const token = useRouteLoaderData("root");
 
+	function checkIfActive({ isActive }) {
+		return isActive ? classes.active : classes.link;
+	}
+	function checkIfActiveRegister({ isActive }) {
+		// return `${classes.link} ${classes.linkRegister} ${
+		// 	isActive ? classes.activeRegister : ""
+		// }`;
+		return `${classes.linkRegister} ${isActive ? classes.activeRegister : ""}`;
+	}
 
 	return (
 		<div className={classes.container}>
 			<nav className={classes.navigation}>
-				<NavLink
-					to="/"
-					className={({ isActive }) =>
-						isActive ? classes.active : classes.link
-					}
-					end
-				>
+				<NavLink to="/" className={checkIfActive} end>
 					Home
 				</NavLink>
-				<NavLink
-					to="/projects"
-					className={({ isActive }) =>
-						isActive ? classes.active : classes.link
-					}
-					end
-				>
+				<NavLink to="/projects" className={checkIfActive} end>
 					Projects
 				</NavLink>
-				<NavLink
-					to="/about"
-					className={({ isActive }) =>
-						isActive ? classes.active : classes.link
-					}
-					end
-				>
+				<NavLink to="/about" className={checkIfActive} end>
 					About Me
 				</NavLink>
 			</nav>
@@ -50,20 +41,15 @@ export default function MainNavigation() {
 				<nav className={classes.authorisation}>
 					<NavLink
 						to="/login"
-						className={({ isActive }) =>
-							isActive ? classes.activeLogin : classes.linkLogin
-						}
+						// className={({ isActive }) =>
+						// 	isActive ? classes.activeLogin : classes.linkLogin
+						// }
+						className={checkIfActive}
 						end
 					>
 						Log in
 					</NavLink>
-					<NavLink
-						to="/register"
-						className={({ isActive }) =>
-							isActive ? classes.activeRegister : classes.linkRegister
-						}
-						end
-					>
+					<NavLink to="/register" className={checkIfActiveRegister} end>
 						Sign in
 					</NavLink>
 				</nav>
