@@ -4,13 +4,16 @@
 	}
 
 	to {
-		transform: translateY(0);
+		transform: translateY(-2rem);
 	}
 }
 
 .items {
-	animation: slideDown 10s ease-out;
-	transform: translateZ(1px);
+	position: relative;
+	animation: slideDown 10s cubic-bezier(0.28, 0.72, 0.44, 1.02);
+	z-index: 2;
+
+	transform: translateY(-2rem);
 	list-style: none;
 }
 
@@ -18,37 +21,37 @@
 	display: grid;
 	grid-template-columns: auto auto;
 	grid-template-rows: auto auto;
-
-	--draw-width: 100px;
-	transform: translateX(calc(-1 / 2 * var(--draw-width)));
 }
-.lootContainer > .count {
+.draw {
+	position: fixed;
+	bottom: var(--spacing-8);
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr;
+}
+.count {
 	font-size: var(--font-6);
 	padding: var(--spacing-3) var(--spacing-6);
-	text-align: center;
-	grid-area: 2/2/3/3;
-	background-color: var(--color-lootbox-border);
-	align-self: start;
-	justify-self: center;
-	border-radius: 0 0 10px 10px;
+	background-color: var(--color-lootbox-button-2);
+	border-radius: 0 0 30px 30px;
 }
-.lootContainer > .count > p {
-	font-size: var(--font-8);
-}
-.lootContainer > .drawButton {
+.drawButton {
 	color: var(--color-text-dark);
-	width: var(--draw-width);
+	width: 20rem;
 	border: 0;
 	padding: var(--spacing-6) var(--spacing-6);
 	font-size: 20px;
-	background-color: var(--color-lootbox-border);
-	border-radius: 100px 0 0 100px;
+	background-color: var(--color-lootbox-button);
+	border-radius: var(--spacing-7);
 	align-self: center;
 }
-.lootContainer > .drawButton:hover {
+.drawButton:hover {
 	background-color: #06729d;
 }
-.lootContainer > .drawButton:active {
+.drawButton:active {
 	background-color: #05648a;
 }
 
@@ -56,12 +59,22 @@
 	position: relative;
 	border: 1rem solid var(--color-lootbox-border);
 	border-radius: 1rem;
-	width: 40rem;
-	height: 50rem;
+	width: 60rem;
+	height: 40rem;
 	overflow: hidden;
 	margin: 0 auto;
 	background: var(--color-lootbox-bg);
 	padding: 0 var(--spacing-8);
+}
+.window::after {
+	z-index: 0;
+	position: absolute;
+	content: "";
+	background-color: var(--color-lootbox-mark);
+	top: 14.2rem;
+	left: 0;
+	width: 100%;
+	height: 9rem;
 }
 
 .container {
@@ -81,4 +94,15 @@
 .buttoncontainer {
 	display: flex;
 	justify-content: space-around;
+}
+
+.historyButton {
+	position: fixed;
+	bottom: var(--spacing-8);
+	right: var(--spacing-10);
+	padding: var(--spacing-4) var(--spacing-6);
+	border-radius: var(--spacing-6);
+	border: 0;
+	background-color: var(--color-lootbox-button-2);
+	font-size: var(--font-5);
 }

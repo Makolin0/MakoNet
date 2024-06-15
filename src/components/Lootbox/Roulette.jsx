@@ -16,7 +16,6 @@ export default function Roulette() {
 	const [historyHidden, setHistoryHidden] = useState(true);
 	const [lootboxData, setLootboxData] = useState(useLoaderData());
 
-
 	async function fetchDraw() {
 		const token = getToken();
 		const response = await fetch(getBackendUrl() + "/user/lootbox", {
@@ -42,7 +41,7 @@ export default function Roulette() {
 		if (!isAnimated) {
 			const drawResponse = await fetchDraw();
 			const drawList = drawResponse.fillerList;
-			drawList[5] = drawResponse.reward;
+			drawList[2] = drawResponse.reward;
 
 			setList(drawList);
 			setReward(drawResponse.reward);
@@ -84,31 +83,34 @@ export default function Roulette() {
 				</Popup>
 			)}
 			<Chances />
+			{lootboxData && (
+				<button
+					onClick={() => {
+						setHistoryHidden(false);
+					}}
+					className={classes.historyButton}
+				>
+					Historia
+				</button>
+			)}
+			<div className={classes.draw}>
+				<button className={classes.drawButton} onClick={buttonHandler}>
+					{isAnimated ? "Losuję..." : "Losuj"}
+				</button>
+				<div className={classes.count}>
+					{lootboxData ? lootboxData?.available : "X"} left
+				</div>
+			</div>
 			<main className={classes.container}>
 				<h1 className={classes.title}>Lootboxy</h1>
 				{!lootboxData && <p>Wersja demo(nie działa, trzeba sie zalogować)</p>}
 				<div className={classes.lootContainer}>
-					<button className={classes.drawButton} onClick={buttonHandler}>
-						{isAnimated ? "Losuję..." : "Losuj"}
-					</button>
 					<div className={classes.window}>
 						<ol className={isAnimated ? classes.items : undefined}>
 							<LootList list={list ? list : []} />
 						</ol>
 					</div>
-					<div className={classes.count}>
-						Pozostalo<p>{lootboxData ? lootboxData?.available : "X"}</p>
-					</div>
 				</div>
-				{lootboxData && (
-					<button
-						onClick={() => {
-							setHistoryHidden(false);
-						}}
-					>
-						Historia
-					</button>
-				)}
 			</main>
 		</>
 	);

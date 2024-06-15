@@ -36,8 +36,7 @@
 .link::after,
 .active::after {
 	transition-property: background-color transform box-shadow;
-	transition-duration: 200ms;
-	transition-timing-function: linear;
+	transition-timing-function: ease-in;
 	z-index: -1;
 	position: absolute;
 	content: "";
@@ -47,10 +46,17 @@
 	opacity: 0;
 	visibility: hidden;
 }
+.active::after {
+	transition-duration: 200ms;
+}
 .link::after {
-	transform: translateY(-1rem);
+	transform: translateY(-1.5rem);
+	transition-duration: 400ms;
 }
 .link:hover::after {
+	transition-property: background-color transform box-shadow;
+	transition-duration: 200ms;
+	transition-timing-function: linear;
 	transform: translateY(0);
 	box-shadow: 0 var(--spacing-2) var(--spacing-3) rgba(0, 0, 0, 0.2);
 	background-color: var(--color-nav-hover);

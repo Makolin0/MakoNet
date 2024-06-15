@@ -1,22 +1,22 @@
 .item {
-	background-color: white;
 	border-radius: 1rem;
-	font-size: var(--font-7);
+	font-size: var(--font-9);
 	text-align: center;
+	padding: var(--spacing-4);
 
 	margin-bottom: var(--spacing-4);
 }
 
 .legend {
-	background-color: orange;
+	background-color: var(--color-lootbox-legendary);
 }
 
-.epic {
-	background-color: purple;
+.rare {
+	background-color: var(--color-lootbox-rare);
 }
 .uncommon {
-	background-color: blue;
+	background-color: var(--color-lootbox-uncommon);
 }
 .common {
-	background-color: green;
+	background-color: var(--color-lootbox-common);
 }
