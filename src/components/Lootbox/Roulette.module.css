@@ -47,12 +47,17 @@
 	background-color: var(--color-lootbox-button);
 	border-radius: var(--spacing-7);
 	align-self: center;
+
+	transition-property: background-color font-size;
+	transition: 200ms ease-in-out;
 }
 .drawButton:hover {
-	background-color: #06729d;
+	background-color: var(--color-lootbox-button-hover);
+	font-size: var(--font-8);
 }
 .drawButton:active {
-	background-color: #05648a;
+	background-color: var(--color-lootbox-button-click);
+	font-size: var(--font-7);
 }
 
 .window {

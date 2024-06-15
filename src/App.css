@@ -61,6 +61,10 @@ body {
 
 	--color-bg: #3c3744;
 
+	--color-main-bg: #0681b1;
+	--color-main-bg-light: #079eda;
+	--color-main-bg-accent: #ffcb77;
+
 	--color-nav-bg: #009fb7;
 	--color-nav-hover: #008da3;
 	--color-nav-click: #007c8f;

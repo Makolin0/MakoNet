@@ -28,10 +28,10 @@
 	gap: var(--spacing-4);
 }
 .form > input {
-	border: 2px solid var(--color-auth-border);
+	border: 0;
 	background-color: var(--color-auth-input);
 
-	border-radius: var(--spacing-4);
+	border-radius: var(--spacing-8);
 	font-size: var(--font-5);
 	padding: var(--spacing-2) var(--spacing-4);
 }
