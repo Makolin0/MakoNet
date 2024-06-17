@@ -16,6 +16,9 @@ export default function Roulette() {
 	const [historyHidden, setHistoryHidden] = useState(true);
 	const [lootboxData, setLootboxData] = useState(useLoaderData());
 
+	function formatTime(time) {
+		return `${time[0]}/${time[1]}/${time[2]} ${time[3]}:${time[4]}:${time[5]} `;
+	}
 	async function fetchDraw() {
 		const token = getToken();
 		const response = await fetch(getBackendUrl() + "/user/lootbox", {
@@ -59,40 +62,56 @@ export default function Roulette() {
 			}, 11 * 1000);
 		}
 	}
+	console.log(lootboxData);
 
 	return (
 		<>
-			<Popup isHidden={popupHidden} onClose={() => setPopupHidden(true)}>
+			<Popup
+				isHidden={popupHidden}
+				onClose={() => setPopupHidden(true)}
+				className={classes.reward}
+			>
 				<h2>Wygrałeś</h2>
 				<h4>{reward.reward}</h4>
 			</Popup>
-			{lootboxData && (
-				<Popup isHidden={historyHidden} onClose={() => setHistoryHidden(true)}>
+			<Popup isHidden={historyHidden} onClose={() => setHistoryHidden(true)}>
+				<div className={classes.history}>
 					<h2>Historia</h2>
 					{lootboxData.openedList.length < 1 ? (
 						<p>Pusto</p>
 					) : (
-						<ol>
-							{lootboxData.openedList.map((item, index) => (
-								<li key={index}>
-									{item.reward} {item.rarity}
-								</li>
-							))}
-						</ol>
+						<table>
+							<thead>
+								<tr>
+									<td>Reward</td>
+									<td>Time</td>
+									<td>Received</td>
+								</tr>
+							</thead>
+							<tbody>
+								{lootboxData.openedList.map((item, index) => {
+									return (
+										<tr key={index}>
+											<td>{item.reward}</td>
+											<td>{formatTime(item.drawTime)}</td>
+											<td>{item.received ? "Yes" : "Not yet"}</td>
+										</tr>
+									);
+								})}
+							</tbody>
+						</table>
 					)}
-				</Popup>
-			)}
+				</div>
+			</Popup>
 			<Chances />
-			{lootboxData && (
-				<button
-					onClick={() => {
-						setHistoryHidden(false);
-					}}
-					className={classes.historyButton}
-				>
-					Historia
-				</button>
-			)}
+			<button
+				onClick={() => {
+					setHistoryHidden(false);
+				}}
+				className={classes.historyButton}
+			>
+				Historia
+			</button>
 			<div className={classes.draw}>
 				<button className={classes.drawButton} onClick={buttonHandler}>
 					{isAnimated ? "Losuję..." : "Losuj"}

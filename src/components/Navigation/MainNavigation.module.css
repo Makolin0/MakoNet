@@ -5,13 +5,17 @@
 	margin-bottom: var(--spacing-11);
 }
 
-.navigation {
+.navigation,
+.navigationAdmin {
 	background-color: var(--color-nav-bg);
 	display: flex;
 	gap: var(--spacing-6);
 	padding: 0 var(--spacing-5);
 	padding-bottom: var(--spacing-4);
 	border-radius: 0 0 var(--spacing-7) var(--spacing-7);
+}
+.navigationAdmin {
+	border-radius: 0 0 var(--spacing-7) 0;
 }
 .logout {
 }
@@ -105,4 +109,10 @@
 	background-color: var(--color-nav-curr);
 }
 .logout > button {
+}
+
+.admin {
+	position: fixed;
+	top: 0;
+	left: 0;
 }

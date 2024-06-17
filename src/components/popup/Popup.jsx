@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import classes from "./Popup.module.css";
 
-export default function Popup({ children, isHidden, onClose }) {
+export default function Popup({ children, isHidden, onClose, className }) {
 	const ref = useRef();
 
 	useEffect(() => {
@@ -10,7 +10,11 @@ export default function Popup({ children, isHidden, onClose }) {
 	}, [isHidden]);
 
 	return (
-		<dialog ref={ref} className={classes.dialog} onClose={onClose}>
+		<dialog
+			ref={ref}
+			className={`${classes.dialog} ${className}`}
+			onClose={onClose}
+		>
 			{children}
 			<form method="dialog" onSubmit={onClose}>
 				<button className={classes.closeButton}>Zamknij</button>

@@ -4,8 +4,8 @@ import classes from "./MainNavigation.module.css";
 
 export default function AdminNavigation() {
 	return (
-		<div className={classes.container}>
-			<nav className={classes.navigation}>
+		<div className={classes.admin}>
+			<nav className={classes.navigationAdmin}>
 				<NavLink
 					to="/admin/lootbox"
 					className={({ isActive }) =>
