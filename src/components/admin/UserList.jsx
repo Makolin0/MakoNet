@@ -3,6 +3,7 @@ import { getToken } from "../../data/tokens";
 import { getBackendUrl } from "../../data/urls";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import classes from "./List.module.css";
 
 export default function UserList() {
 	const [userList, setUserList] = useState(useLoaderData());
@@ -36,18 +37,18 @@ export default function UserList() {
 
 	return (
 		<main>
-			<table>
-				<thead>
+			<table className={classes.table}>
+				<thead className={classes.head}>
 					<tr>
 						<td>id</td>
 						<td>email</td>
 						<td>nickname</td>
 						<td>role</td>
 						<td>lootboxes</td>
-						<td>+</td>
+						<td>add</td>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody className={classes.body}>
 					{userList.map((user, index) => {
 						return (
 							<tr key={index}>

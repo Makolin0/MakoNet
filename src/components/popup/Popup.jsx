@@ -15,7 +15,7 @@ export default function Popup({ children, isHidden, onClose, className }) {
 			className={`${classes.dialog} ${className}`}
 			onClose={onClose}
 		>
-			{children}
+			<section>{children}</section>
 			<form method="dialog" onSubmit={onClose}>
 				<button className={classes.closeButton}>Zamknij</button>
 			</form>

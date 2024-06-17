@@ -6,9 +6,10 @@ export default function ChatMain() {
 	const [nick, setNick] = useState(null);
 
 	return (
-		<>
+		<main>
+			<h1 style={{ color: "white" }}>NOT FINAL</h1>
 			{!nick && <ChatSetName setNick={setNick} />}
 			{nick && <ChatWindow nick={nick} />}
-		</>
+		</main>
 	);
 }

@@ -3,6 +3,7 @@ import { getToken } from "../../data/tokens";
 import { getBackendUrl } from "../../data/urls";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import classes from "./List.module.css";
 
 export default function LootboxList() {
 	const [lootboxList, setLootboxList] = useState(useLoaderData());
@@ -34,8 +35,8 @@ export default function LootboxList() {
 
 	return (
 		<main>
-			<table>
-				<thead>
+			<table className={classes.table}>
+				<thead className={classes.head}>
 					<tr>
 						<td>id</td>
 						<td>user</td>
@@ -45,7 +46,7 @@ export default function LootboxList() {
 						<td>received</td>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody className={classes.body}>
 					{lootboxList.map((lootbox, index) => {
 						return (
 							<tr key={index}>
