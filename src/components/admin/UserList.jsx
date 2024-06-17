@@ -2,11 +2,15 @@ import { useLoaderData } from "react-router";
 import { getToken } from "../../data/tokens";
 import { getBackendUrl } from "../../data/urls";
 import toast from "react-hot-toast";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import classes from "./List.module.css";
+import { UserContext } from "../../data/UserContext";
 
 export default function UserList() {
 	const [userList, setUserList] = useState(useLoaderData());
+	const { userInfo } = useContext(UserContext);
+	const isGod = userInfo.role === "GOD";
+	console.log(isGod);
 
 	async function addLootboxes(event) {
 		event.preventDefault();
@@ -46,6 +50,7 @@ export default function UserList() {
 						<td>role</td>
 						<td>lootboxes</td>
 						<td>add</td>
+						{isGod && <td></td>}
 					</tr>
 				</thead>
 				<tbody className={classes.body}>
@@ -64,6 +69,11 @@ export default function UserList() {
 										<button type="submit">add</button>
 									</form>
 								</td>
+								{isGod && (
+									<td>
+										<button>make Admin</button>
+									</td>
+								)}
 							</tr>
 						);
 					})}
