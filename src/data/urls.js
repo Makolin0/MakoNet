@@ -1,3 +1,9 @@
 export function getBackendUrl() {
-	return "http://localhost:8080";
+	if (import.meta.env.DEV) {
+		console.log("http://localhost:8080");
+		return "http://localhost:8080";
+	} else {
+		console.log("https://makonet-api.onrender.com");
+		return "https://makonet-api.onrender.com";
+	}
 }
