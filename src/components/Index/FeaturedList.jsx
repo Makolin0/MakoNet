@@ -24,12 +24,6 @@ export default function FeaturedList() {
 					</ol>
 				</section>
 			</main>
-			<div className={classes.btn}>
-				najedz na mnie
-				<div className={classes.menu}>
-					<button>click</button>
-				</div>
-			</div>
 		</>
 	);
 }
