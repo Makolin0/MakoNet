@@ -3,7 +3,7 @@ export function getBackendUrl() {
 		console.log("http://localhost:8080");
 		return "http://localhost:8080";
 	} else {
-		console.log("https://makonet-api.onrender.com");
-		return "https://makonet-api.onrender.com";
+		console.log("https://makonet-backend.onrender.com");
+		return "https://makonet-backend.onrender.com";
 	}
 }
