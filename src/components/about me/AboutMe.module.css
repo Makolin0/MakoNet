@@ -32,7 +32,7 @@
 	background-color: var(--color-main-bg-accent);
 
 	animation-name: descriptionAnimation;
-	animation-duration: 2s;
+	animation-duration: 1s;
 	animation-delay: 300ms;
 	animation-fill-mode: both;
 	animation-timing-function: ease-in-out;
@@ -45,7 +45,7 @@
 .picture {
 	animation-timing-function: ease-in-out;
 	animation-name: pictureAnimation;
-	animation-duration: 2s;
+	animation-duration: 1s;
 	animation-delay: 300ms;
 	animation-fill-mode: both;
 }

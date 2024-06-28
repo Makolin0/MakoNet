@@ -77,7 +77,7 @@ export default function Roulette() {
 			<Popup isHidden={historyHidden} onClose={() => setHistoryHidden(true)}>
 				<div className={classes.history}>
 					<h2>Historia</h2>
-					{lootboxData.openedList.length < 1 ? (
+					{!lootboxData || lootboxData.openedList < 1 ? (
 						<p>Pusto</p>
 					) : (
 						<table>
