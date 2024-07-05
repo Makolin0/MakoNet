@@ -91,6 +91,9 @@
 	margin: 0 auto;
 	justify-content: center; */
 }
+.container > p {
+	color: var(--color-text-light);
+}
 
 .title {
 	font-size: 80px;

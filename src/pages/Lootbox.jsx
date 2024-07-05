@@ -14,7 +14,7 @@ export async function lootboxLoader() {
 		return null;
 	}
 
-	const response = await fetch(getBackendUrl() + "/user/lootbox", {
+	const response = await fetch(getBackendUrl() + "/lootbox", {
 		headers: {
 			Authorization: "Bearer " + token,
 		},

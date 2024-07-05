@@ -20,6 +20,6 @@
 }
 
 .dialog > section {
-	overflow-y: scroll;
+	overflow-y: auto;
 	max-height: 70rem;
 }
