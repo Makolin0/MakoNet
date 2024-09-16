@@ -3,7 +3,7 @@ import LootList from "./LootList";
 import classes from "./Roulette.module.css";
 import Chances from "./Chances";
 import Popup from "../popup/Popup";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useParams } from "react-router";
 import toast from "react-hot-toast";
 import { getBackendUrl } from "../../data/urls";
 import { checkToken, getToken } from "../../data/tokens";
@@ -16,8 +16,14 @@ export default function Roulette() {
 	const [historyHidden, setHistoryHidden] = useState(true);
 	const [lootboxData, setLootboxData] = useState(useLoaderData());
 	const loggedIn = checkToken();
+
+	const params = useParams();
+	const lootboxName = params.name;
+
 	console.log("loggedIn");
 	console.log(loggedIn);
+	console.log("lootboxName");
+	console.log(lootboxName);
 
 	function formatTime(time) {
 		return `${time[0]}/${time[1]}/${time[2]} ${time[3]}:${time[4]}:${time[5]} `;
@@ -33,7 +39,7 @@ export default function Roulette() {
 				},
 			});
 		} else {
-			response = await fetch(getBackendUrl() + "/lootbox/demo", {
+			response = await fetch(getBackendUrl() + "/lootbox/demo/" + lootboxName, {
 				method: "POST",
 			});
 		}
@@ -84,7 +90,7 @@ export default function Roulette() {
 				className={classes.reward}
 			>
 				<h2>Wygrałeś</h2>
-				<h4>{reward.reward}</h4>
+				<h4>{reward.name}</h4>
 			</Popup>
 			{loggedIn && (
 				<Popup isHidden={historyHidden} onClose={() => setHistoryHidden(true)}>
@@ -118,7 +124,7 @@ export default function Roulette() {
 				</Popup>
 			)}
 
-			<Chances />
+			<Chances lootboxName={lootboxName} />
 			{loggedIn && (
 				<button
 					onClick={() => {
@@ -142,7 +148,7 @@ export default function Roulette() {
 				)}
 			</div>
 			<main className={classes.container}>
-				<h1 className={classes.title}>Lootboxy</h1>
+				<h1 className={classes.title}>Lootboxy {lootboxName}</h1>
 				{!lootboxData && <p>Wersja demo (Należy się zalogować)</p>}
 				<div className={classes.lootContainer}>
 					<div className={classes.window}>

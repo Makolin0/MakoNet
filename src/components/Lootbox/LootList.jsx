@@ -1,8 +1,6 @@
 import classes from "./LootList.module.css";
 
 export default function LootList({ list }) {
-	
-
 	return (
 		<>
 			{list.map((elem, index) => {
@@ -19,7 +17,7 @@ export default function LootList({ list }) {
 								: classes.common
 						}`}
 					>
-						{elem.reward}
+						{elem.name}
 					</li>
 				);
 			})}

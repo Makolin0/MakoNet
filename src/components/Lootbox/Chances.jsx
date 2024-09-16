@@ -3,7 +3,7 @@ import classes from "./Chances.module.css";
 import showLogo from "/arrow-forward.svg";
 import { getBackendUrl } from "../../data/urls";
 
-export default function Chances() {
+export default function Chances({ lootboxName }) {
 	const [showList, setShowList] = useState(false);
 	const [chancesList, setChancesList] = useState(null);
 	const hidden = {
@@ -14,8 +14,11 @@ export default function Chances() {
 	};
 
 	useEffect(() => {
+		console.log(getBackendUrl() + "/lootbox/chances/" + lootboxName);
 		async function getChances() {
-			const response = await fetch(getBackendUrl() + "/lootbox/chances");
+			const response = await fetch(
+				getBackendUrl() + "/lootbox/chances/" + lootboxName
+			);
 			const responseData = await response.json();
 			console.log("chances");
 			console.log(responseData);
@@ -32,12 +35,19 @@ export default function Chances() {
 		<section className={classes.sidebar}>
 			<div className={classes.list} style={!showList ? hidden : undefined}>
 				<ol>
-					{chancesList?.map((elem, index) => {
+					{chancesList?.map((elem) => {
 						return (
-							<li key={index}>
-								<p>{elem.reward}</p>
-								<p>{elem.chance.toFixed(2)}%</p>
-							</li>
+							<>
+								<div>
+									<p>{elem.rarity}</p>
+									<p>{elem.chance.toFixed(2)}%</p>
+								</div>
+								<ol className={classes.listRewards}>
+									{elem.possibleRewards.map((reward, index) => {
+										return <li key={index}>{reward}</li>;
+									})}
+								</ol>
+							</>
 						);
 					})}
 				</ol>

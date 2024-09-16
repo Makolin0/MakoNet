@@ -4,11 +4,11 @@ import { getToken } from "../../data/tokens";
 import { getBackendUrl } from "../../data/urls";
 import { redirect } from "react-router";
 
-export default function LootboxListPage() {
+export default function LootboxListAdminPage() {
 	return <LootboxList />;
 }
 
-export async function LootboxListLoader() {
+export async function LootboxListAdminLoader() {
 	const token = getToken();
 	const response = await fetch(getBackendUrl() + "/admin/lootbox", {
 		headers: {

@@ -4,11 +4,11 @@ import { getBackendUrl } from "../../data/urls";
 import { redirect } from "react-router";
 import UserList from "../../components/admin/UserList";
 
-export default function UserListPage() {
+export default function UserListAdminPage() {
 	return <UserList />;
 }
 
-export async function UserListLoader() {
+export async function UserListAdminLoader() {
 	const token = getToken();
 	const response = await fetch(getBackendUrl() + "/admin/users", {
 		headers: {

@@ -6,7 +6,7 @@ import ErrorPage from "./pages/Error";
 import HomePage from "./pages/Home";
 import ProjectsPage from "./pages/Projects";
 import AboutMePage from "./pages/About";
-import LootboxPage, { lootboxLoader } from "./pages/Lootbox";
+import LootboxListPage, { lootboxListLoader } from "./pages/LootboxList";
 import ChatPage from "./pages/Chat";
 
 import "./init";
@@ -14,8 +14,11 @@ import LoginPage, { loginAction } from "./pages/Login";
 import RegisterPage, { registerAction } from "./pages/Register";
 import { logoutAction, tokenLoader } from "./data/tokens";
 import UserContextProvider from "./data/UserContext";
-import LootboxListPage, { LootboxListLoader } from "./pages/admin/LootboxList";
-import UserListPage, { UserListLoader } from "./pages/admin/UserList";
+import LootboxListAdminPage, {
+	LootboxListAdminLoader,
+} from "./pages/admin/LootboxList";
+import UserListAdminPage, { UserListAdminLoader } from "./pages/admin/UserList";
+import LootboxPage, { lootboxLoader } from "./pages/Lootbox";
 
 const router = createBrowserRouter([
 	{
@@ -31,20 +34,29 @@ const router = createBrowserRouter([
 			{ path: "login", element: <LoginPage />, action: loginAction },
 			{ path: "register", element: <RegisterPage />, action: registerAction },
 			{ path: "logout", action: logoutAction },
-			{ path: "lootbox", element: <LootboxPage />, loader: lootboxLoader },
+			{
+				path: "lootbox",
+				element: <LootboxListPage />,
+				loader: lootboxListLoader,
+			},
+			{
+				path: "lootbox/:name",
+				element: <LootboxPage />,
+				loader: lootboxLoader,
+			},
 			{ path: "chat", element: <ChatPage /> },
 			{
 				path: "admin",
 				children: [
 					{
 						path: "lootbox",
-						element: <LootboxListPage />,
-						loader: LootboxListLoader,
+						element: <LootboxListAdminPage />,
+						loader: LootboxListAdminLoader,
 					},
 					{
 						path: "users",
-						element: <UserListPage />,
-						loader: UserListLoader,
+						element: <UserListAdminPage />,
+						loader: UserListAdminLoader,
 					},
 				],
 			},

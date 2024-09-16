@@ -1,14 +1,16 @@
 import toast from "react-hot-toast";
+import { getBackendUrl } from "../data/urls";
 import Roulette from "../components/Lootbox/Roulette";
 import { getToken } from "../data/tokens";
-import { getBackendUrl } from "../data/urls";
 
 export default function LootboxPage() {
+	console.log("lootboxPage");
 	return <Roulette />;
 }
 
 export async function lootboxLoader() {
 	const token = getToken();
+	console.log("roulette loader");
 
 	if (token === null) {
 		return null;
