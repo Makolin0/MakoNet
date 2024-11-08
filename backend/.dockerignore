@@ -1,5 +1,7 @@
 Dockerfile
 .git*
 .env
+.idea
+.mvn
 README.md
-node_modules
+target
