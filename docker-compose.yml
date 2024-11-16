@@ -5,6 +5,8 @@ services:
       - mongodb:/data/db
     env_file:
       - ./env/mongodb.env
+    ports:
+      - 27017:27017
 
   backend:
     build: ./backend
