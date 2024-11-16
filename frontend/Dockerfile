@@ -1,11 +1,15 @@
 FROM node:22
-# RUN mkdir /app && chown node:node /app
-USER node
+
+# USER node
+
 WORKDIR /app
 
-COPY package.json .
+COPY package.json ./
+COPY package-lock.json ./
 RUN npm install
-COPY . .
 
-EXPOSE 5173
-CMD [ "npm", "run", "dev" ]
+COPY ./ ./
+
+EXPOSE 3000
+
+CMD [ "npm", "start" ]

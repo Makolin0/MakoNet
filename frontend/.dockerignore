@@ -1,5 +1,0 @@
-Dockerfile
-.git*
-.env
-README.md
-node_modules

@@ -1,6 +1,6 @@
 services:
   mongodb:
-    image: "mongo"
+    image: mongo
     volumes:
       - mongodb:/data/db
     env_file:
@@ -9,7 +9,7 @@ services:
   backend:
     build: ./backend
     ports:
-      - "8080:8080"
+      - 8080:8080
     env_file:
       - ./env/backend.env
     depends_on:
@@ -20,12 +20,19 @@ services:
   frontend:
     build: ./frontend
     ports:
-      - "5173:5173"
+      - 3000:3000
+    # volumes:
+    # - /app/node_modules
+    # - ./frontend:/app
+    # env_file:
+    #   - ./env/frontend.env
+
+  npm:
+    build:
+      context: .
+      dockerfile: utility/npm.dockerfile
     volumes:
-      - /app/node_modules
-      - ./frontend:/app
-    env_file:
-      - ./env/frontend.env
+      - ./frontend:/frontend
 
 volumes:
   mongodb:
