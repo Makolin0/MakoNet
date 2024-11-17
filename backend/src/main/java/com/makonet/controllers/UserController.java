@@ -4,14 +4,14 @@ import com.makonet.dto.LoginDTO;
 import com.makonet.dto.RegisterDTO;
 import com.makonet.models.MongoUser;
 import com.makonet.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@AllArgsConstructor
 public class UserController {
-    @Autowired
     private UserService userService;
 
     @PostMapping("register")

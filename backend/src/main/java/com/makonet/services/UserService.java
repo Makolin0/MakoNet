@@ -5,7 +5,7 @@ import com.makonet.dto.RegisterDTO;
 import com.makonet.models.Lootboxes;
 import com.makonet.models.MongoUser;
 import com.makonet.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,12 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class UserService {
-    @Autowired
     private UserRepository userRepo;
-    @Autowired
     private AuthenticationManager authenticationManager;
-    @Autowired
     private JwtService jwtService;
 
     private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
