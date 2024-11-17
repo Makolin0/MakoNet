@@ -15,7 +15,7 @@ import java.util.Map;
 @Document(collection = "users")
 @ToString
 public class MongoUser {
-    private String nickname;
+    private String username;
     private String email;
     private String password;
     private String registrationTime;

@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 public class UserController {
     @Autowired
-    UserRepository userRepo;
+    private UserRepository userRepo;
 
     @GetMapping("users")
     public List<MongoUser> getUsers() {
