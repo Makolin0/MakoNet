@@ -27,19 +27,6 @@ public class SecurityConfig {
         return http.build();
     }
 
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//
-//        UserDetails admin = User
-//                .withDefaultPasswordEncoder()
-//                .username(System.getenv("securityUsername"))
-//                .password(System.getenv("securityPassword"))
-//                .roles("USER")
-//                .build();
-//
-//        return new InMemoryUserDetailsManager(admin);
-//    }
-
     @Autowired
     private MyUserDetailsService userDetailsService;
 
@@ -48,7 +35,6 @@ public class SecurityConfig {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService);
         authProvider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
-
 
         return authProvider;
     }
