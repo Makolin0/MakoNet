@@ -1,20 +1,19 @@
 package com.makonet.controllers;
 
 import com.makonet.models.MongoUser;
-import com.makonet.repository.UserRepository;
+import com.makonet.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 public class UserController {
     @Autowired
-    private UserRepository userRepo;
+    private UserService userService;
 
-    @GetMapping("users")
-    public List<MongoUser> getUsers() {
-        return userRepo.findAll();
+    @PostMapping("register")
+    public MongoUser register(@RequestBody MongoUser user) {
+        return userService.saveUser(user);
     }
 }

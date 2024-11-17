@@ -18,7 +18,7 @@ public class MongoUser {
     private String username;
     private String email;
     private String password;
-    private String registrationTime;
+    private LocalDateTime registrationTime;
     private String[] roles;
     private Lootboxes lootboxes;
 }
