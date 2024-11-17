@@ -5,9 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.time.LocalDateTime;
-import java.util.Map;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -19,25 +20,6 @@ public class MongoUser {
     private String email;
     private String password;
     private LocalDateTime registrationTime;
-    private String[] roles;
+    private List<SimpleGrantedAuthority> roles;
     private Lootboxes lootboxes;
-}
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
-class Lootboxes {
-    private Map<String, Integer> unopened;
-    private History[] history;
-}
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
-class History {
-    private String rewardId;
-    private LocalDateTime dropTime;
-    private LocalDateTime receivedTime;
 }
