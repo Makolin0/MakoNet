@@ -1,0 +1,81 @@
+.container {
+	display: grid;
+	gap: var(--spacing-5);
+	justify-content: center;
+	text-align: center;
+}
+.login {
+	background-color: var(--color-auth-bg);
+	padding: var(--spacing-6);
+	border-radius: var(--spacing-6);
+}
+.login > h1 {
+	margin-bottom: var(--spacing-6);
+}
+.form {
+	background-color: var(--color-auth-form);
+	padding: var(--spacing-6);
+
+	padding: var(--spacing-6) var(--spacing-7);
+	border-radius: var(--spacing-8);
+
+	display: grid;
+	gap: var(--spacing-7);
+}
+.inputContainer {
+	display: grid;
+}
+.inputContainer > input {
+	border: 0;
+	background-color: var(--color-auth-input);
+
+	margin-bottom: var(--spacing-5);
+	border-radius: var(--spacing-8);
+	font-size: var(--font-5);
+	padding: var(--spacing-2) var(--spacing-4);
+}
+.inputContainer > .errorInput {
+	color: rgb(209, 58, 58);
+	font-size: var(--font-4);
+	justify-self: start;
+}
+
+.form > button {
+	background-color: var(--color-auth-button);
+
+	border: 0;
+	font-size: var(--font-6);
+	padding: var(--spacing-4) var(--spacing-6);
+	border-radius: var(--spacing-4);
+	justify-self: center;
+	cursor: pointer;
+}
+.form > button:hover {
+	background-color: var(--color-auth-button-hover);
+}
+.form > button:active {
+	background-color: var(--color-auth-button-click);
+}
+
+.register {
+	background-color: var(--color-auth-bg);
+
+	font-size: var(--font-6);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: var(--spacing-4) var(--spacing-5);
+	border-radius: var(--spacing-6);
+}
+.register > a {
+	background-color: var(--color-auth-button);
+	color: var(--color-text-dark);
+	text-decoration: none;
+
+	border: 0;
+	font-size: var(--font-6);
+	padding: var(--spacing-3) var(--spacing-5);
+	border-radius: var(--spacing-4);
+	justify-self: center;
+	cursor: pointer;
+}
