@@ -5,6 +5,7 @@ import com.makonet.dto.RegisterDTO;
 import com.makonet.models.MongoUser;
 import com.makonet.services.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,5 +23,10 @@ public class UserController {
     @PostMapping("login")
     public String login(@RequestBody LoginDTO credentials) {
         return userService.generateJwt(credentials);
+    }
+
+    @GetMapping("check")
+    public String check() {
+        return "Logged in";
     }
 }
