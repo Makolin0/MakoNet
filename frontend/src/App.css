@@ -1,42 +1,107 @@
-#root {
-	max-width: 1280px;
-	margin: 0 auto;
-	padding: 2rem;
-	text-align: center;
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
-.logo {
-	height: 6em;
-	padding: 1.5em;
-	will-change: filter;
-	transition: filter 300ms;
-}
-.logo:hover {
-	filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-	filter: drop-shadow(0 0 2em #61dafbaa);
+html,
+body {
+	height: 100%;
 }
 
-@keyframes logo-spin {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg);
-	}
+html {
+	/* default 16px -> 10px */
+	font-size: 62.5%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-	a:nth-of-type(2) .logo {
-		animation: logo-spin infinite 20s linear;
-	}
+body {
+	font-family: "Nunito", sans-serif;
+	font-weight: normal;
+	color: #222;
+	font-size: var(--font-8);
+	background-color: var(--color-bg);
 }
 
-.card {
-	padding: 2em;
-}
+/* https://coolors.co/01161e-009fb7-6d676e-fca311-ffcb77 */
+/* 06070E black*/
+/* #001427 */
+/* #01161E */
+:root {
+	--spacing-1: 0.2rem;
+	--spacing-2: 0.4rem;
+	--spacing-3: 0.8rem;
+	--spacing-4: 1.2rem;
+	--spacing-5: 1.6rem;
+	--spacing-6: 2.4rem;
+	--spacing-7: 3.2rem;
+	--spacing-8: 4.8rem;
+	--spacing-9: 6.4rem;
+	--spacing-10: 8rem;
+	--spacing-11: 9.6rem;
+	--spacing-12: 12.8rem;
 
-.read-the-docs {
-	color: #888;
+	--font-1: 1rem;
+	--font-2: 1.2rem;
+	--font-3: 1.4rem;
+	--font-4: 1.6rem;
+	--font-5: 1.8rem;
+	--font-6: 2rem;
+	--font-7: 2.4rem;
+	--font-8: 3rem;
+	--font-9: 3.6rem;
+	--font-10: 4.4rem;
+	--font-11: 5.2rem;
+	--font-12: 6.2rem;
+	--font-13: 7.4rem;
+	--font-14: 8.6rem;
+	--font-15: 9.8rem;
+
+	--color-text-dark: #222;
+	--color-text-light: #eee;
+
+	--color-bg: #3c3744;
+
+	--color-main-bg: #0681b1;
+	--color-main-bg-light: #079eda;
+	--color-main-bg-accent: #ffcb77;
+	--color-main-bg-accent-2: #ffd899;
+	--color-main: #fca311;
+
+	--color-nav-bg: #009fb7;
+	--color-nav-hover: #008da3;
+	--color-nav-click: #007c8f;
+	--color-nav-div: #002329;
+	--color-nav-curr: #fca311;
+	--color-nav-login: #009fb7;
+	--color-nav-register: #005866;
+	--color-nav-register-hover: #004752;
+
+	--color-featured-bg: #0681b1;
+	--color-featured-project: #ffcb77;
+	--color-featured-button: #f29602;
+
+	--color-popup-border: #005866;
+	--color-popup-bg: #009fb7;
+	--color-popup-button: #f29602;
+
+	--color-lootbox-bg: #6d676e;
+	--color-lootbox-chances-bg: #009fb8;
+	--color-lootbox-button: #f29602;
+	--color-lootbox-button-hover: #fda10d;
+	--color-lootbox-button-click: #f29602;
+	--color-lootbox-button-2: #fda821;
+	--color-lootbox-mark: #ffffff;
+
+	--color-lootbox-legendary: #f8e432;
+	--color-lootbox-rare: #ce69ec;
+	--color-lootbox-uncommon: #3990e0;
+	--color-lootbox-common: #7eee5d;
+
+	--color-auth-bg: #0681b1;
+	--color-auth-form: #ffcb77;
+	--color-auth-border: #ffb947;
+	--color-auth-input: #f5f5f5;
+	--color-auth-button: #f29602;
+	--color-auth-button-hover: #fda10d;
+	--color-auth-button-click: #f29602;
 }

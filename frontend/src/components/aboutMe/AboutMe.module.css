@@ -1,0 +1,72 @@
+:root {
+	--size-header: 50rem;
+	--size-header-gap: var(--spacing-6);
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	justify-items: center;
+}
+
+.header {
+	border-radius: var(--spacing-7);
+	text-align: center;
+	background-color: var(--color-main-bg);
+	max-width: 200rem;
+	padding: var(--spacing-7) var(--spacing-8);
+}
+.header > section {
+	display: flex;
+	gap: var(--size-header-gap);
+}
+.description,
+.picture {
+	border-radius: var(--spacing-6);
+	width: var(--size-header);
+}
+.description {
+	padding: var(--spacing-6) var(--spacing-8);
+	background-color: var(--color-main-bg-accent);
+
+	animation-name: descriptionAnimation;
+	animation-duration: 1s;
+	animation-delay: 300ms;
+	animation-fill-mode: both;
+	animation-timing-function: ease-in-out;
+}
+.description > p {
+	text-align: start;
+	font-size: var(--font-7);
+}
+
+.picture {
+	animation-timing-function: ease-in-out;
+	animation-name: pictureAnimation;
+	animation-duration: 1s;
+	animation-delay: 300ms;
+	animation-fill-mode: both;
+}
+
+@keyframes pictureAnimation {
+	from {
+		transform: translateX(
+			calc((var(--size-header) + var(--size-header-gap)) * -0.5)
+		);
+	}
+	to {
+		transform: translateX(0);
+	}
+}
+@keyframes descriptionAnimation {
+	from {
+		transform: translateX(
+			calc((var(--size-header) + var(--size-header-gap)) * 0.5)
+		);
+	}
+	to {
+		transform: translateX(0);
+	}
+}

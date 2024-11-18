@@ -1,0 +1,25 @@
+.dialog {
+	margin: 0 auto;
+	margin-top: var(--spacing-12);
+	border: 0;
+	border-radius: var(--spacing-4);
+	background-color: var(--color-popup-bg);
+	text-align: center;
+	padding: var(--spacing-5) var(--spacing-7);
+	max-height: 80%;
+}
+.dialog::backdrop {
+	background: rgba(0, 0, 0, 0.5);
+}
+.closeButton {
+	border: 0;
+	background-color: var(--color-popup-button);
+	font-size: var(--font-5);
+	padding: var(--spacing-3) var(--spacing-5);
+	border-radius: var(--spacing-4);
+}
+
+.dialog > section {
+	overflow-y: auto;
+	max-height: 70rem;
+}

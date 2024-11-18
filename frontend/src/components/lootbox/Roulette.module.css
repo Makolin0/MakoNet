@@ -1,0 +1,167 @@
+@keyframes slideDown {
+	from {
+		transform: translateY(-900rem);
+	}
+
+	to {
+		transform: translateY(-2rem);
+	}
+}
+
+.items {
+	position: relative;
+	animation: slideDown 10s cubic-bezier(0.28, 0.72, 0.44, 1.02);
+	z-index: 2;
+
+	transform: translateY(-2rem);
+	list-style: none;
+}
+
+.lootContainer {
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-template-rows: auto auto;
+}
+.draw {
+	position: fixed;
+	bottom: var(--spacing-8);
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr;
+}
+.count {
+	font-size: var(--font-6);
+	padding: var(--spacing-3) var(--spacing-6);
+	background-color: var(--color-lootbox-button-2);
+	border-radius: 0 0 30px 30px;
+}
+.drawButton {
+	color: var(--color-text-dark);
+	width: 20rem;
+	border: 0;
+	padding: var(--spacing-6) var(--spacing-6);
+	font-size: 20px;
+	background-color: var(--color-lootbox-button);
+	border-radius: var(--spacing-7);
+	align-self: center;
+	cursor: pointer;
+
+	transition-property: background-color font-size;
+	transition: 200ms ease-in-out;
+}
+.drawButton:hover {
+	background-color: var(--color-lootbox-button-hover);
+	font-size: var(--font-8);
+}
+.drawButton:active {
+	background-color: var(--color-lootbox-button-click);
+	font-size: var(--font-7);
+}
+
+.window {
+	position: relative;
+	border: 1rem solid var(--color-lootbox-border);
+	border-radius: 1rem;
+	width: 60rem;
+	height: 40rem;
+	overflow: hidden;
+	margin: 0 auto;
+	background: var(--color-lootbox-bg);
+	padding: 0 var(--spacing-8);
+}
+.window::after {
+	z-index: 0;
+	position: absolute;
+	content: "";
+	background-color: var(--color-lootbox-mark);
+	top: 14.2rem;
+	left: 0;
+	width: 100%;
+	height: 9rem;
+}
+
+.container {
+	display: grid;
+	justify-content: center;
+	justify-items: center;
+	/* width: fit-content;
+	margin: 0 auto;
+	justify-content: center; */
+}
+.container > p {
+	color: var(--color-text-light);
+}
+
+.title {
+	font-size: 80px;
+	color: var(--color-text-light);
+}
+
+.buttoncontainer {
+	display: flex;
+	justify-content: space-around;
+}
+
+.historyButton {
+	position: fixed;
+	z-index: 2;
+	bottom: var(--spacing-8);
+	right: var(--spacing-10);
+	padding: var(--spacing-4) var(--spacing-6);
+	border-radius: var(--spacing-6);
+	border: 0;
+	background-color: var(--color-lootbox-button-2);
+	font-size: var(--font-5);
+	cursor: pointer;
+}
+.history > table {
+	border-collapse: collapse;
+	border: 0;
+	text-align: left;
+	table-layout: fixed;
+	/* border-spacing: var(--spacing-6) 0; */
+}
+.history > table > tbody > tr {
+	background-color: var(--color-main-bg-accent);
+}
+
+.history th,
+.history td {
+	padding: var(--spacing-3) var(--spacing-5);
+}
+.history > table > tbody > tr:first-child > td:first-child {
+	border-radius: var(--spacing-4) 0 0 0;
+}
+.history > table > tbody > tr:first-child > td:last-child {
+	border-radius: 0 var(--spacing-4) 0 0;
+}
+.history > table > tbody > tr:last-child > td:first-child {
+	border-radius: 0 0 0 var(--spacing-4);
+}
+.history > table > tbody > tr:last-child > td:last-child {
+	border-radius: 0 0 var(--spacing-4) 0;
+}
+.history > table > tbody > tr {
+	border-bottom: 2px solid var(--color-text-dark);
+}
+.history > table > tbody > tr:last-child {
+	border-bottom: 0;
+}
+.history > table > tbody > tr:nth-child(2n) {
+	background-color: var(--color-main-bg-accent-2);
+}
+
+.reward {
+	animation: rewardSlide 500ms cubic-bezier(0.64, 0.94, 0.28, 1.28);
+}
+@keyframes rewardSlide {
+	from {
+		transform: translateY(-30rem);
+	}
+	to {
+		transform: translateY(0);
+	}
+}

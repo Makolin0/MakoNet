@@ -1,0 +1,84 @@
+.container {
+	display: flex;
+	justify-content: center;
+}
+.listContainer {
+	list-style: none;
+	display: flex;
+	justify-content: center;
+	gap: var(--spacing-7);
+}
+
+.featured {
+	background-color: var(--color-featured-bg);
+	border-radius: var(--spacing-5);
+	padding: var(--spacing-6);
+}
+.featured h1 {
+	text-align: center;
+	font-size: var(--font-11);
+	letter-spacing: -0.1rem;
+	margin-bottom: var(--spacing-5);
+}
+
+.project {
+	color: var(--color-text-dark);
+	text-decoration: none;
+	background-color: var(--color-featured-project);
+	display: grid;
+	justify-items: center;
+	width: 30rem;
+	padding: var(--spacing-5);
+	border-radius: var(--spacing-5);
+	box-shadow: 0 var(--spacing-4) var(--spacing-4) rgba(0, 0, 0, 0.3);
+	cursor: pointer;
+
+	transition-property: transform box-shadow;
+	transition-duration: 200ms;
+}
+.project:hover {
+	transform: scale(1.05);
+	box-shadow: 0 var(--spacing-6) var(--spacing-5) rgba(0, 0, 0, 0.3);
+}
+.project h3 {
+	font-size: var(--font-9);
+	margin-bottom: var(--spacing-4);
+}
+.project img {
+	font-size: var(--font-4);
+	margin-bottom: var(--spacing-4);
+	max-width: 100%;
+	max-height: 20rem;
+}
+.project p {
+	font-size: var(--font-6);
+	margin-bottom: var(--spacing-5);
+}
+/* .project a:link,
+.project a:visited {
+	text-decoration: none;
+	color: black;
+	background-color: var(--color-featured-button);
+	display: inline-block;
+	padding: var(--spacing-4) var(--spacing-6);
+	font-size: var(--font-7);
+	border-radius: var(--spacing-10);
+} */
+
+.btn > .menu {
+	display: block;
+	opacity: 0;
+	visibility: hidden;
+	cursor: pointer;
+	transform: translateX(-1rem);
+	transition-property: transform;
+	transition-duration: 1s;
+	transition-timing-function: ease-in;
+}
+.btn:hover > .menu {
+	opacity: 1;
+	visibility: visible;
+	transform: translateX(0);
+}
+.btn button {
+}

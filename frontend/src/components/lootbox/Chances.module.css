@@ -1,0 +1,48 @@
+.sidebar {
+	z-index: 1;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.list {
+	min-width: 20rem;
+	background-color: var(--color-lootbox-chances-bg);
+	border-radius: 0 10px 10px 0;
+	padding: var(--spacing-5) var(--spacing-7);
+}
+.list > ol {
+	max-height: 70rem;
+	overflow-y: scroll;
+	list-style: none;
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-template-rows: auto auto auto auto;
+	gap: var(--spacing-4);
+}
+/* .list > ol > li {
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid var(--color-text-dark);
+	font-size: var(--font-7);
+} */
+.list > ol > li:last-child {
+	border-bottom: 0;
+}
+
+.sidebar > button {
+	background-color: var(--color-lootbox-chances-bg);
+	border: 0;
+	padding: var(--spacing-5) var(--spacing-1);
+	border-radius: 0 10px 10px 0;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.listRewards {
+	list-style: none;
+}

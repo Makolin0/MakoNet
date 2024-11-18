@@ -1,0 +1,22 @@
+.item {
+	border-radius: 1rem;
+	font-size: var(--font-9);
+	text-align: center;
+	padding: var(--spacing-4);
+
+	margin-bottom: var(--spacing-4);
+}
+
+.legend {
+	background-color: var(--color-lootbox-legendary);
+}
+
+.rare {
+	background-color: var(--color-lootbox-rare);
+}
+.uncommon {
+	background-color: var(--color-lootbox-uncommon);
+}
+.common {
+	background-color: var(--color-lootbox-common);
+}
