@@ -6,8 +6,10 @@ export default function Projects() {
 		<main className={classes.container}>
 			<h1>My projects</h1>
 			<ul className={classes.list}>
-				<Project name="lootbox" description="Test test" />
-				<Project name="chat" description="Test test" />
+				<Project
+					name="lootbox"
+					description="Lootboxes system for minecraft server"
+				/>
 			</ul>
 		</main>
 	);
