@@ -14,6 +14,7 @@ import LootboxListAdminPage, {
 	lootboxListAdminLoader,
 } from "./pages/admin/LootboxList";
 import UserListAdminPage, { userListAdminLoader } from "./pages/admin/UserList";
+import UserContextProvider from "./data/UserContext";
 
 const router = createBrowserRouter([
 	{
@@ -60,9 +61,9 @@ const router = createBrowserRouter([
 
 function App() {
 	return (
-		// <UserContextProvider>
-		<RouterProvider router={router} />
-		// </UserContextProvider>
+		<UserContextProvider>
+			<RouterProvider router={router} />
+		</UserContextProvider>
 	);
 }
 

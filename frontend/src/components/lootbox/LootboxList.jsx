@@ -6,6 +6,14 @@ export default function LootboxList() {
 	console.log("list");
 	console.log(lootboxList);
 
+	if (lootboxList === null) {
+		return (
+			<main className="">
+				<h1>Sorry, service is currently unavailable</h1>
+			</main>
+		);
+	}
+
 	return (
 		<main className="">
 			<h1>choose a lootbox</h1>

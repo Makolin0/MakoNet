@@ -9,7 +9,6 @@ export default function LootboxListPage() {
 export async function lootboxListLoader() {
 	const response = await fetch(getBackendUrl() + "/lootbox/names");
 	if (response.status !== 200) {
-		toast.error("Error while getting lootbox info");
 		return null;
 	} else {
 		const responseData = await response.json();
