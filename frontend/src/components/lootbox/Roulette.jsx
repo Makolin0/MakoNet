@@ -19,11 +19,6 @@ export default function Roulette() {
 
 	const name = lootboxData.name;
 
-	console.log("loggedIn");
-	console.log(loggedIn);
-	console.log("lootboxName");
-	console.log(name);
-
 	function formatTime(time) {
 		return `${time[0]}/${time[1]}/${time[2]} ${time[3]}:${time[4]}:${time[5]} `;
 	}
@@ -74,7 +69,6 @@ export default function Roulette() {
 			}, 11 * 1000);
 		}
 	}
-	console.log(lootboxData);
 
 	return (
 		<>
@@ -84,6 +78,7 @@ export default function Roulette() {
 				className={classes.reward}
 			>
 				<h2>Wygrałeś</h2>
+				<img src={reward.imageUrl} />
 				<h4>{reward.name}</h4>
 			</Popup>
 			{loggedIn && (
@@ -137,13 +132,13 @@ export default function Roulette() {
 
 				{loggedIn && (
 					<div className={classes.count}>
-						{lootboxData ? lootboxData?.available : "X"} left
+						{lootboxData ? lootboxData?.available : "X"} zostało
 					</div>
 				)}
 			</div>
 			<main className={classes.container}>
 				<h1 className={classes.title}>Lootboxy {name}</h1>
-				{!lootboxData && <p>Wersja demo (Należy się zalogować)</p>}
+				{!loggedIn && <p>Wersja demo (nie zalogowany)</p>}
 				<div className={classes.lootContainer}>
 					<div className={classes.window}>
 						<ol className={isAnimated ? classes.items : undefined}>

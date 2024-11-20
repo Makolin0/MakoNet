@@ -1,0 +1,31 @@
+.container {
+	display: flex;
+	justify-content: center;
+}
+
+.main {
+	background-color: var(--color-main-bg);
+	text-align: center;
+
+	border-radius: var(--spacing-6);
+	padding: var(--spacing-5);
+}
+
+.main ol {
+	display: flex;
+	justify-content: center;
+	flex-flow: column;
+}
+
+.main li {
+	list-style: none;
+}
+.link:visited,
+.link:link {
+	display: block;
+	text-decoration: none;
+	color: var(--color-text-dark);
+	background-color: var(--color-main-bg-accent);
+	padding: var(--spacing-5);
+	border-radius: var(--spacing-5);
+}
