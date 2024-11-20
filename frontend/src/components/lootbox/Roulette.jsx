@@ -3,9 +3,9 @@ import LootList from "./LootList";
 import classes from "./Roulette.module.css";
 import Chances from "./Chances";
 import Popup from "../popup/Popup";
-import { useLoaderData, useParams } from "react-router";
+import { useLoaderData } from "react-router";
 import toast from "react-hot-toast";
-import { getBackendUrl } from "../../data/urls";
+import { getBackendUrl, postLootboxDrawDemoUrl } from "../../data/urls";
 import { checkToken, getToken } from "../../data/tokens";
 
 export default function Roulette() {
@@ -17,13 +17,12 @@ export default function Roulette() {
 	const [lootboxData, setLootboxData] = useState(useLoaderData());
 	const loggedIn = checkToken();
 
-	const params = useParams();
-	const lootboxName = params.name;
+	const name = lootboxData.name;
 
 	console.log("loggedIn");
 	console.log(loggedIn);
 	console.log("lootboxName");
-	console.log(lootboxName);
+	console.log(name);
 
 	function formatTime(time) {
 		return `${time[0]}/${time[1]}/${time[2]} ${time[3]}:${time[4]}:${time[5]} `;
@@ -39,7 +38,7 @@ export default function Roulette() {
 				},
 			});
 		} else {
-			response = await fetch(getBackendUrl() + "/lootbox/demo/" + lootboxName, {
+			response = await fetch(postLootboxDrawDemoUrl(name), {
 				method: "POST",
 			});
 		}
@@ -52,11 +51,6 @@ export default function Roulette() {
 	}
 
 	async function buttonHandler() {
-		if (lootboxData?.available < 1) {
-			toast.error("Brak skrzynek");
-			return;
-		}
-
 		if (!isAnimated) {
 			const drawResponse = await fetchDraw();
 			const drawList = drawResponse.fillerList;
@@ -148,7 +142,7 @@ export default function Roulette() {
 				)}
 			</div>
 			<main className={classes.container}>
-				<h1 className={classes.title}>Lootboxy {lootboxName}</h1>
+				<h1 className={classes.title}>Lootboxy {name}</h1>
 				{!lootboxData && <p>Wersja demo (Należy się zalogować)</p>}
 				<div className={classes.lootContainer}>
 					<div className={classes.window}>

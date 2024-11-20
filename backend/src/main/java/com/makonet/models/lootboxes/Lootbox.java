@@ -17,4 +17,8 @@ public class Lootbox {
     private String id;
     private String name;
     private List<Rarity> rarities;
+
+    public Rarity getRarity(int i) {
+        return rarities.get(i);
+    }
 }

@@ -16,4 +16,8 @@ public class Rarity {
     private String color;
     private Integer chance;
     private List<Loot> loot;
+
+    public Loot getLoot(int index) {
+        return loot.get(index);
+    }
 }
