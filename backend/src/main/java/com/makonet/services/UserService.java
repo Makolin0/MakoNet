@@ -2,8 +2,8 @@ package com.makonet.services;
 
 import com.makonet.dto.LoginDTO;
 import com.makonet.dto.RegisterDTO;
-import com.makonet.models.Lootboxes;
-import com.makonet.models.MongoUser;
+import com.makonet.models.users.UserLootbox;
+import com.makonet.models.users.MongoUser;
 import com.makonet.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -38,7 +38,7 @@ public class UserService {
         user.setPassword(encoder.encode(register.getPassword()));
         user.setRegistrationTime(LocalDateTime.now());
         user.setRoles(new ArrayList<>(List.of(new SimpleGrantedAuthority("ROLE_USER"))));
-        user.setLootboxes(new Lootboxes());
+        user.setUserLootbox(new UserLootbox());
 
         return userRepo.save(user);
     }

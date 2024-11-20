@@ -1,16 +1,16 @@
 @keyframes slideDown {
 	from {
-		transform: translateY(-900rem);
+		transform: translateY(-1100rem);
 	}
 
 	to {
-		transform: translateY(-2rem);
+		transform: translateY(-6.2rem);
 	}
 }
 
 .items {
 	position: relative;
-	animation: slideDown 10s cubic-bezier(0.28, 0.72, 0.44, 1.02);
+	animation: slideDown 10s cubic-bezier(0.28, 0.72, 0.44, 1.02) forwards;
 	z-index: 2;
 
 	transform: translateY(-2rem);

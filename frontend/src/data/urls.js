@@ -7,3 +7,13 @@ export function getBackendUrl() {
 		return "https://makonet-backend.onrender.com";
 	}
 }
+
+export const getLootboxNamesUrl = getBackendUrl() + "/lootbox";
+
+export function getLootboxDataUrl(name) {
+	return getBackendUrl() + "/lootbox/" + name;
+}
+
+export function postLootboxDrawDemoUrl(name) {
+	return getBackendUrl() + "/lootbox/" + name + "/demo";
+}

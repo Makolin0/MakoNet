@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useLoaderData } from "react-router";
+import classes from "./LootboxList.module.css";
 
 export default function LootboxList() {
 	const lootboxList = useLoaderData();
@@ -15,17 +16,21 @@ export default function LootboxList() {
 	}
 
 	return (
-		<main className="">
-			<h1>choose a lootbox</h1>
-			<ol>
-				{lootboxList?.map((name, index) => {
-					return (
-						<li key={index}>
-							<Link to={name}>{name}</Link>
-						</li>
-					);
-				})}
-			</ol>
-		</main>
+		<div className={classes.container}>
+			<main className={classes.main}>
+				<h1>choose a lootbox</h1>
+				<ol>
+					{lootboxList?.map((name, index) => {
+						return (
+							<li key={index}>
+								<Link to={name} className={classes.link}>
+									{name}
+								</Link>
+							</li>
+						);
+					})}
+				</ol>
+			</main>
+		</div>
 	);
 }

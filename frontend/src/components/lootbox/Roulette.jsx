@@ -3,9 +3,9 @@ import LootList from "./LootList";
 import classes from "./Roulette.module.css";
 import Chances from "./Chances";
 import Popup from "../popup/Popup";
-import { useLoaderData, useParams } from "react-router";
+import { useLoaderData } from "react-router";
 import toast from "react-hot-toast";
-import { getBackendUrl } from "../../data/urls";
+import { getBackendUrl, postLootboxDrawDemoUrl } from "../../data/urls";
 import { checkToken, getToken } from "../../data/tokens";
 
 export default function Roulette() {
@@ -17,13 +17,7 @@ export default function Roulette() {
 	const [lootboxData, setLootboxData] = useState(useLoaderData());
 	const loggedIn = checkToken();
 
-	const params = useParams();
-	const lootboxName = params.name;
-
-	console.log("loggedIn");
-	console.log(loggedIn);
-	console.log("lootboxName");
-	console.log(lootboxName);
+	const name = lootboxData.name;
 
 	function formatTime(time) {
 		return `${time[0]}/${time[1]}/${time[2]} ${time[3]}:${time[4]}:${time[5]} `;
@@ -39,7 +33,7 @@ export default function Roulette() {
 				},
 			});
 		} else {
-			response = await fetch(getBackendUrl() + "/lootbox/demo/" + lootboxName, {
+			response = await fetch(postLootboxDrawDemoUrl(name), {
 				method: "POST",
 			});
 		}
@@ -52,11 +46,6 @@ export default function Roulette() {
 	}
 
 	async function buttonHandler() {
-		if (lootboxData?.available < 1) {
-			toast.error("Brak skrzynek");
-			return;
-		}
-
 		if (!isAnimated) {
 			const drawResponse = await fetchDraw();
 			const drawList = drawResponse.fillerList;
@@ -80,7 +69,6 @@ export default function Roulette() {
 			}, 11 * 1000);
 		}
 	}
-	console.log(lootboxData);
 
 	return (
 		<>
@@ -90,6 +78,7 @@ export default function Roulette() {
 				className={classes.reward}
 			>
 				<h2>Wygrałeś</h2>
+				<img src={reward.imageUrl} />
 				<h4>{reward.name}</h4>
 			</Popup>
 			{loggedIn && (
@@ -124,7 +113,7 @@ export default function Roulette() {
 				</Popup>
 			)}
 
-			<Chances lootboxName={lootboxName} />
+			<Chances rarities={lootboxData.rarities} />
 			{loggedIn && (
 				<button
 					onClick={() => {
@@ -143,13 +132,13 @@ export default function Roulette() {
 
 				{loggedIn && (
 					<div className={classes.count}>
-						{lootboxData ? lootboxData?.available : "X"} left
+						{lootboxData ? lootboxData?.available : "X"} zostało
 					</div>
 				)}
 			</div>
 			<main className={classes.container}>
-				<h1 className={classes.title}>Lootboxy {lootboxName}</h1>
-				{!lootboxData && <p>Wersja demo (Należy się zalogować)</p>}
+				<h1 className={classes.title}>Lootboxy {name}</h1>
+				{!loggedIn && <p>Wersja demo (nie zalogowany)</p>}
 				<div className={classes.lootContainer}>
 					<div className={classes.window}>
 						<ol className={isAnimated ? classes.items : undefined}>
