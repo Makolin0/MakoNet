@@ -1,4 +1,4 @@
-package com.makonet.models;
+package com.makonet.models.users;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,10 +16,11 @@ import java.util.List;
 @Document(collection = "users")
 @ToString
 public class MongoUser {
+    private String id;
     private String username;
     private String email;
     private String password;
     private LocalDateTime registrationTime;
     private List<SimpleGrantedAuthority> roles;
-    private Lootboxes lootboxes;
+    private UserLootbox userLootbox;
 }

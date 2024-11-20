@@ -1,4 +1,4 @@
-package com.makonet.models;
+package com.makonet.models.users;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

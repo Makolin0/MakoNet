@@ -1,6 +1,6 @@
 package com.makonet.services;
 
-import com.makonet.models.MongoUser;
+import com.makonet.models.users.MongoUser;
 import com.makonet.models.UserPrincipal;
 import com.makonet.repository.UserRepository;
 import lombok.AllArgsConstructor;

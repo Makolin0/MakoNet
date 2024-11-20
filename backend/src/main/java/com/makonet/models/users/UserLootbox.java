@@ -1,4 +1,4 @@
-package com.makonet.models;
+package com.makonet.models.users;
 
 import lombok.Data;
 import lombok.ToString;
@@ -10,11 +10,11 @@ import java.util.Map;
 
 @Data
 @ToString
-public class Lootboxes {
+public class UserLootbox {
     private Map<String, Integer> unopened;
     private List<History> history;
 
-    public Lootboxes() {
+    public UserLootbox() {
         unopened = new HashMap<>();
         history = new ArrayList<>();
     }
