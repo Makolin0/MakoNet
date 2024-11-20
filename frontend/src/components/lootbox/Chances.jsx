@@ -1,31 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import classes from "./Chances.module.css";
 import showLogo from "/arrow-forward.svg";
-import { getBackendUrl } from "../../data/urls";
 
-export default function Chances({ lootboxName }) {
+export default function Chances({ rarities }) {
 	const [showList, setShowList] = useState(false);
-	const [chancesList, setChancesList] = useState(null);
 	const hidden = {
 		display: "none",
 	};
 	const rotate = {
 		transform: "rotate(180deg)",
 	};
-
-	useEffect(() => {
-		console.log(getBackendUrl() + "/lootbox/chances/" + lootboxName);
-		async function getChances() {
-			const response = await fetch(
-				getBackendUrl() + "/lootbox/chances/" + lootboxName
-			);
-			const responseData = await response.json();
-			console.log("chances");
-			console.log(responseData);
-			setChancesList(responseData);
-		}
-		getChances();
-	}, []);
 
 	function buttonHandler() {
 		setShowList((prev) => !prev);
@@ -35,19 +19,19 @@ export default function Chances({ lootboxName }) {
 		<section className={classes.sidebar}>
 			<div className={classes.list} style={!showList ? hidden : undefined}>
 				<ol>
-					{chancesList?.map((elem) => {
+					{rarities?.map((rarity, index) => {
 						return (
-							<>
+							<li key={index}>
 								<div>
-									<p>{elem.rarity}</p>
-									<p>{elem.chance.toFixed(2)}%</p>
+									<p>{rarity.name}</p>
+									<p>{rarity.chance / 10}%</p>
 								</div>
 								<ol className={classes.listRewards}>
-									{elem.possibleRewards.map((reward, index) => {
-										return <li key={index}>{reward}</li>;
+									{rarity.loot.map((loot, index) => {
+										return <li key={index}>{loot.name}</li>;
 									})}
 								</ol>
-							</>
+							</li>
 						);
 					})}
 				</ol>

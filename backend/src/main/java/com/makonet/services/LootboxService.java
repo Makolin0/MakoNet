@@ -13,9 +13,10 @@ public class LootboxService {
     private final LootboxRepository lootboxRepo;
 
     public List<String> getNames() {
-        lootboxRepo.findAll().forEach(System.out::println);
-        List<String> lootboxNames = lootboxRepo.findAll().stream().map(Lootbox::getName).toList();
-        System.out.println(lootboxNames);
-        return lootboxNames;
+        return lootboxRepo.findAll().stream().map(Lootbox::getName).toList();
+    }
+
+    public Lootbox getInfo(String name) {
+        return lootboxRepo.findFirstByName(name);
     }
 }

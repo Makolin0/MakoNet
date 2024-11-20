@@ -14,6 +14,6 @@ import java.util.List;
 public class Rarity {
     private String name;
     private String color;
-    private String chance;
+    private Integer chance;
     private List<Loot> loot;
 }

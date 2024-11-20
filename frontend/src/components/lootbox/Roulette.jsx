@@ -124,7 +124,7 @@ export default function Roulette() {
 				</Popup>
 			)}
 
-			<Chances lootboxName={lootboxName} />
+			<Chances rarities={lootboxData.rarities} />
 			{loggedIn && (
 				<button
 					onClick={() => {
