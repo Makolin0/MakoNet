@@ -1,4 +1,4 @@
-package com.makonet.dto;
+package com.makonet.dto.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,9 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterDTO {
-    private String username;
+public class LoginDTO {
     private String email;
     private String password;
-    private String confirmPassword;
 }

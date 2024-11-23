@@ -1,6 +1,6 @@
 import { redirect } from "react-router";
 import Login from "../components/authentication/Login";
-import { getBackendUrl } from "../data/urls";
+import { postLoginUrl } from "../data/apiLinks";
 import toast from "react-hot-toast";
 import { saveToken } from "../data/tokens";
 
@@ -15,7 +15,7 @@ export async function loginAction({ request }) {
 		password: data.get("password"),
 	};
 
-	const response = await fetch(getBackendUrl() + "/auth/login", {
+	const response = await fetch(postLoginUrl, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -28,9 +28,9 @@ export async function loginAction({ request }) {
 		return redirect("/login");
 	}
 
-	const responseData = await response.json();
+	const responseData = await response.text();
 
-	saveToken(responseData.token);
+	saveToken(responseData);
 
 	return redirect("/");
 }

@@ -21,14 +21,19 @@ export default function Chances({ rarities }) {
 				<ol>
 					{rarities?.map((rarity, index) => {
 						return (
-							<li key={index}>
+							<li key={index} style={{ backgroundColor: rarity.color }}>
 								<div>
 									<p>{rarity.name}</p>
 									<p>{rarity.chance / 10}%</p>
 								</div>
 								<ol className={classes.listRewards}>
 									{rarity.loot.map((loot, index) => {
-										return <li key={index}>{loot.name}</li>;
+										return (
+											<li key={index}>
+												<img src={loot.imageUrl} alt="img" />
+												<p>{loot.name}</p>
+											</li>
+										);
 									})}
 								</ol>
 							</li>

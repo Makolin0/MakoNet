@@ -34,7 +34,7 @@ export default function MainNavigation() {
 			</nav>
 			{token ? (
 				<Form action={"logout"} method={"POST"} className={classes.logout}>
-					<p>{userInfo?.nickname}</p>
+					<p>{userInfo?.username}</p>
 					<button type="submit">Log out</button>
 				</Form>
 			) : (

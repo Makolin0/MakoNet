@@ -15,13 +15,30 @@
 	padding: var(--spacing-5) var(--spacing-7);
 }
 .list > ol {
-	max-height: 70rem;
-	overflow-y: scroll;
-	list-style: none;
-	display: grid;
-	grid-template-columns: auto auto;
-	grid-template-rows: auto auto auto auto;
+	display: flex;
+	flex-flow: column;
 	gap: var(--spacing-4);
+
+	max-height: 70rem;
+	overflow-y: auto;
+	list-style: none;
+}
+.list > ol > li {
+	border-radius: var(--spacing-4);
+	padding: var(--spacing-4);
+}
+.list > ol > li > div {
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 0.2rem solid;
+}
+.list > ol > li > ol > li {
+	display: flex;
+	align-items: center;
+	height: 4rem;
+}
+.list img {
+	height: 100%;
 }
 /* .list > ol > li {
 	display: flex;

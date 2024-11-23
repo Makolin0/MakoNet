@@ -1,23 +1,51 @@
 import toast from "react-hot-toast";
-import { getLootboxDataUrl } from "../data/urls";
+import {
+	getLootboxDataUrl,
+	getLootboxNameCountUrl,
+	getLootboxNameHistoryUrl,
+} from "../data/apiLinks";
 import Roulette from "../components/lootbox/Roulette";
+import { getToken } from "../data/tokens";
 
 export default function LootboxPage() {
-	console.log("lootboxPage");
 	return <Roulette />;
 }
 
 export async function lootboxLoader({ params }) {
-	console.log("lootboxLoader");
-	console.log(params.name);
-	console.log(getLootboxDataUrl(params.name));
+	let lootboxData;
 	const response = await fetch(getLootboxDataUrl(params.name));
 	if (response.status !== 200) {
 		toast.error("Error while getting lootbox info");
 		return null;
 	} else {
-		const responseData = await response.json();
-		console.log(responseData);
-		return responseData;
+		lootboxData = await response.json();
+	}
+
+	if (getToken) {
+		let countData;
+		const responseCount = await fetch(getLootboxNameCountUrl(params.name), {
+			headers: {
+				Authorization: "Bearer " + getToken(),
+			},
+		});
+		if (responseCount.status !== 200) {
+			toast.error("Error while getting lootbox info");
+			return null;
+		} else {
+			countData = await responseCount.json();
+		}
+
+		const responseHistory = await fetch(getLootboxNameHistoryUrl(params.name), {
+			headers: {
+				Authorization: "Bearer " + getToken(),
+			},
+		});
+		if (responseCount.status !== 200) {
+			toast.error("Error while getting lootbox info");
+			return null;
+		} else {
+			const history = await responseHistory.json();
+			return { ...lootboxData, ...countData, history };
+		}
 	}
 }

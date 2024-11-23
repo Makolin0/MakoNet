@@ -9,11 +9,11 @@ export const UserContext = createContext({
 export default function UserContextProvider({ children }) {
 	const [userInfo, setUserInfo] = useState(null);
 
-	function setInfo(email, nickname, role) {
+	function setInfo(username, email, roles) {
 		setUserInfo({
+			username: username,
 			email: email,
-			nickname: nickname,
-			role: role,
+			roles: roles,
 		});
 	}
 

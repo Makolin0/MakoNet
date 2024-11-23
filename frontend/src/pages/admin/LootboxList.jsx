@@ -1,7 +1,7 @@
 import toast from "react-hot-toast";
 import LootboxList from "../../components/admin/LootboxList";
 import { getToken } from "../../data/tokens";
-import { getBackendUrl } from "../../data/urls";
+import { getBackendUrl } from "../../data/apiLinks";
 import { redirect } from "react-router";
 
 export default function LootboxListAdminPage() {

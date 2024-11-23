@@ -2,9 +2,9 @@ import { Outlet, useRouteLoaderData } from "react-router";
 import MainNavigation from "../components/navigation/MainNavigation";
 import { UserContext } from "../data/UserContext";
 import { useContext, useEffect } from "react";
-import { getBackendUrl } from "../data/urls";
 import toast from "react-hot-toast";
 import AdminNavigation from "../components/navigation/AdminNavigation";
+import { adminRole, getUserInfoUrl } from "../data/apiLinks";
 
 export default function RootLayout() {
 	const { userInfo, setInfo } = useContext(UserContext);
@@ -13,9 +13,7 @@ export default function RootLayout() {
 	useEffect(() => {
 		async function getUserInfo() {
 			if (token !== null) {
-				console.log("jest uzytkownik");
-
-				const response = await fetch(getBackendUrl() + "/user/info", {
+				const response = await fetch(getUserInfoUrl, {
 					headers: {
 						Authorization: "Bearer " + token,
 					},
@@ -24,11 +22,11 @@ export default function RootLayout() {
 					toast.error("Error while getting user info");
 				} else {
 					const responseData = await response.json();
-					console.log(responseData);
+					console.log("User Info", responseData);
 					setInfo(
 						responseData.username,
-						responseData.nickname,
-						responseData.role
+						responseData.email,
+						responseData.roles
 					);
 				}
 			} else {
@@ -37,12 +35,12 @@ export default function RootLayout() {
 		}
 		getUserInfo();
 	}, [token]);
+
+	console.log("nav", userInfo);
 	return (
 		<>
 			<MainNavigation />
-			{(userInfo?.role === "ADMIN" || userInfo?.role === "GOD") && (
-				<AdminNavigation />
-			)}
+			{userInfo?.roles?.includes(adminRole) && <AdminNavigation />}
 			<Outlet />
 		</>
 	);

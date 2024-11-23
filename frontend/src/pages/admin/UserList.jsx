@@ -1,6 +1,6 @@
 import toast from "react-hot-toast";
 import { getToken } from "../../data/tokens";
-import { getBackendUrl } from "../../data/urls";
+import { getAdminUsersUrl } from "../../data/apiLinks";
 import { redirect } from "react-router";
 import UserList from "../../components/admin/UserList";
 
@@ -10,7 +10,7 @@ export default function UserListAdminPage() {
 
 export async function userListAdminLoader() {
 	const token = getToken();
-	const response = await fetch(getBackendUrl() + "/admin/users", {
+	const response = await fetch(getAdminUsersUrl, {
 		headers: {
 			Authorization: "Bearer " + token,
 		},
@@ -20,7 +20,7 @@ export async function userListAdminLoader() {
 		return redirect("/");
 	} else {
 		const responseData = await response.json();
-		console.log(responseData);
+		console.log("admin users", responseData);
 		return responseData;
 	}
 }

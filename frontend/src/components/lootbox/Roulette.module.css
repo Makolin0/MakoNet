@@ -127,6 +127,12 @@
 .history > table > tbody > tr {
 	background-color: var(--color-main-bg-accent);
 }
+.history > table > tbody > tr > td {
+	height: 10rem;
+}
+.history img {
+	height: 100%;
+}
 
 .history th,
 .history td {
