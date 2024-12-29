@@ -1,6 +1,6 @@
 import { redirect } from "react-router";
 import Register from "../components/authentication/Register";
-import { getBackendUrl } from "../data/urls";
+import { getBackendUrl } from "../data/apiLinks";
 import toast from "react-hot-toast";
 import { saveToken } from "../data/tokens";
 

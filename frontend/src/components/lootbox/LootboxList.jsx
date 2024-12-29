@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useLoaderData } from "react-router";
 import classes from "./LootboxList.module.css";
+import { checkToken } from "../../data/tokens";
 
 export default function LootboxList() {
 	const lootboxList = useLoaderData();
@@ -20,12 +21,19 @@ export default function LootboxList() {
 			<main className={classes.main}>
 				<h1>choose a lootbox</h1>
 				<ol>
-					{lootboxList?.map((name, index) => {
+					{lootboxList?.map((lootbox, index) => {
 						return (
 							<li key={index}>
-								<Link to={name} className={classes.link}>
-									{name}
-								</Link>
+								{!checkToken() && (
+									<Link to={lootbox} className={classes.link}>
+										{lootbox}
+									</Link>
+								)}
+								{checkToken() && (
+									<Link to={lootbox.name} className={classes.link}>
+										{lootbox.name} {lootbox.count}
+									</Link>
+								)}
 							</li>
 						);
 					})}

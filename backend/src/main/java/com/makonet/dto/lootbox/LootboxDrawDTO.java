@@ -1,4 +1,4 @@
-package com.makonet.dto;
+package com.makonet.dto.lootbox;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

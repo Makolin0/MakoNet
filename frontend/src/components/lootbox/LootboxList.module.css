@@ -15,6 +15,7 @@
 	display: flex;
 	justify-content: center;
 	flex-flow: column;
+	gap: var(--spacing-5);
 }
 
 .main li {

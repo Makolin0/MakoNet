@@ -1,21 +1,16 @@
 package com.makonet.services;
 
-import com.makonet.dto.LoginDTO;
-import com.makonet.dto.RegisterDTO;
-import com.makonet.models.users.UserLootbox;
+import com.makonet.dto.user.LoginDTO;
+import com.makonet.dto.user.RegisterDTO;
+import com.makonet.dto.user.UserInfoDTO;
 import com.makonet.models.users.MongoUser;
 import com.makonet.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -26,30 +21,32 @@ public class UserService {
 
     private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
-    public MongoUser saveUser(RegisterDTO register) {
+    public String saveUser(RegisterDTO register) {
         if(!register.getPassword().equals(register.getConfirmPassword())) {
             return null;
         }
 
-        MongoUser user = new MongoUser();
+        register.setPassword(encoder.encode(register.getPassword()));
+        MongoUser user = new MongoUser(register);
+        userRepo.save(user);
 
-        user.setUsername(register.getUsername());
-        user.setEmail(register.getEmail());
-        user.setPassword(encoder.encode(register.getPassword()));
-        user.setRegistrationTime(LocalDateTime.now());
-        user.setRoles(new ArrayList<>(List.of(new SimpleGrantedAuthority("ROLE_USER"))));
-        user.setUserLootbox(new UserLootbox());
-
-        return userRepo.save(user);
+        LoginDTO credentials = new LoginDTO(user.getEmail(), user.getPassword());
+        return generateJwt(credentials);
     }
 
     public String generateJwt(LoginDTO credentials) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(credentials.getUsername(), credentials.getPassword()));
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(credentials.getEmail(), credentials.getPassword()));
 
         if(authentication.isAuthenticated()) {
-            return jwtService.generateToken(credentials.getUsername());
+            return jwtService.generateToken(credentials.getEmail());
         } else {
             return "Login failed";
         }
+    }
+
+    public UserInfoDTO getInfo(String email) {
+        MongoUser user = userRepo.findFirstByEmail(email);
+
+        return new UserInfoDTO(user);
     }
 }

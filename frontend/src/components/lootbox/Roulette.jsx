@@ -5,7 +5,10 @@ import Chances from "./Chances";
 import Popup from "../popup/Popup";
 import { useLoaderData } from "react-router";
 import toast from "react-hot-toast";
-import { getBackendUrl, postLootboxDrawDemoUrl } from "../../data/urls";
+import {
+	postLootboxDrawDemoUrl,
+	postLootboxDrawUrl,
+} from "../../data/apiLinks";
 import { checkToken, getToken } from "../../data/tokens";
 
 export default function Roulette() {
@@ -19,14 +22,16 @@ export default function Roulette() {
 
 	const name = lootboxData.name;
 
-	function formatTime(time) {
-		return `${time[0]}/${time[1]}/${time[2]} ${time[3]}:${time[4]}:${time[5]} `;
-	}
+	console.log("Lootbox Data", lootboxData);
 
 	async function fetchDraw() {
+		if (lootboxData.count <= 0) {
+			toast.error("Brak skrzynek!");
+			return;
+		}
 		let response;
 		if (loggedIn) {
-			response = await fetch(getBackendUrl() + "/lootbox", {
+			response = await fetch(postLootboxDrawUrl(name), {
 				method: "POST",
 				headers: {
 					Authorization: "Bearer " + getToken(),
@@ -61,8 +66,9 @@ export default function Roulette() {
 				if (loggedIn) {
 					setLootboxData((prev) => {
 						return {
-							available: prev.available - 1,
-							openedList: [...prev.openedList, drawResponse.reward],
+							...prev,
+							count: prev.count - 1,
+							history: [...prev.history, drawResponse.reward],
 						};
 					});
 				}
@@ -91,18 +97,24 @@ export default function Roulette() {
 							<table>
 								<thead>
 									<tr>
-										<td>Reward</td>
-										<td>Time</td>
-										<td>Received</td>
+										<td></td>
+										<td>Nagroda</td>
+										<td>Rzadkość</td>
+										<td>Czas</td>
+										<td>Otrzymano</td>
 									</tr>
 								</thead>
 								<tbody>
-									{lootboxData.openedList.map((item, index) => {
+									{lootboxData.history.map((item, index) => {
 										return (
-											<tr key={index}>
-												<td>{item.reward}</td>
-												<td>{formatTime(item.drawTime)}</td>
-												<td>{item.received ? "Yes" : "Not yet"}</td>
+											<tr key={index} style={{ backgroundColor: item.color }}>
+												<td>
+													<img src={item.imageUrl} />
+												</td>
+												<td>{item.name}</td>
+												<td>{item.rarity}</td>
+												<td>{item.dropTime}</td>
+												<td>{item.receivedTime || "Jeszcze nie"}</td>
 											</tr>
 										);
 									})}
@@ -132,7 +144,7 @@ export default function Roulette() {
 
 				{loggedIn && (
 					<div className={classes.count}>
-						{lootboxData ? lootboxData?.available : "X"} zostało
+						zostało {lootboxData ? lootboxData?.count : "X"}
 					</div>
 				)}
 			</div>

@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router";
 import { getToken } from "../../data/tokens";
-import { getBackendUrl } from "../../data/urls";
+import { getBackendUrl } from "../../data/apiLinks";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import classes from "./List.module.css";
