@@ -1,6 +1,6 @@
 import { redirect } from "react-router";
 import Register from "../components/authentication/Register";
-import { getBackendUrl } from "../data/apiLinks";
+import { postRegisterUrl } from "../data/apiLinks";
 import toast from "react-hot-toast";
 import { saveToken } from "../data/tokens";
 
@@ -15,7 +15,7 @@ export async function registerAction({ request }) {
 		password: data.get("password"),
 	};
 
-	const response = await fetch(getBackendUrl() + "/auth/register", {
+	const response = await fetch(postRegisterUrl, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",

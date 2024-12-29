@@ -1,13 +1,28 @@
-FROM node:22
+FROM node:22 AS build
+
+ARG VITE_API_BACKEND_URL
+ARG VITE_API_FRONTEND_URL
+
+ENV VITE_API_BACKEND_URL=$VITE_API_BACKEND_URL
+ENV VITE_API_FRONTEND_URL=$VITE_API_FRONTEND_URL
 
 WORKDIR /app
 
-COPY package.json ./
-COPY package-lock.json ./
+COPY package*.json ./
 RUN npm install
 
-COPY ./ ./
+COPY . .
 
-EXPOSE 5173
+RUN npm run build
 
-CMD [ "npm", "run", "dev" ]
+FROM nginx:alpine
+
+COPY --from=build /app/dist /usr/share/nginx/html
+
+COPY nginx.conf /etc/nginx/nginx.conf
+
+RUN rm /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]

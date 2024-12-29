@@ -3,31 +3,36 @@ services:
     image: mongo
     volumes:
       - mongodb:/data/db
-    env_file:
-      - ./utility/stack.env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=8hioUYjfeY73Kbga6549Ebfsj
     ports:
-      - 27017:27017
+      - 4002:27017
 
   backend:
     build: ./backend
     ports:
-      - 8080:8080
-    env_file:
-      - ./utility/stack.env
+      - 4001:8080
+    environment:
+      - MONGO_URI=mongodb://admin:8hioUYjfeY73Kbga6549Ebfsj@mongodb:27017
+      - MONGO_DATABASE=makonet
+      - CORS_ALLOWED_ORIGIN=http://localhost:4000
     depends_on:
       - mongodb
     tty: true
     stdin_open: true
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      args:
+        - VITE_API_BACKEND_URL=http://localhost:4001
+        - VITE_API_FRONTEND_URL=http://localhost:4000
     ports:
-      - 5173:5173
+      - 4000:80
     volumes:
       - /app/node_modules
       - ./frontend:/app
-    env_file:
-      - ./utility/stack.env
     stdin_open: true
     tty: true
 
