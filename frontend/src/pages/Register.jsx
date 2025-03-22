@@ -8,15 +8,13 @@ export default function RegisterPage() {
 	return <Register />;
 }
 export async function registerAction({ request }) {
-	console.log("awaiting credentials");
 	const data = await request.formData();
 	const credentials = {
 		email: data.get("email"),
-		nickname: data.get("nickname"),
+		username: data.get("username"),
 		password: data.get("password"),
+		confirmPassword: data.get("confirmPassword"),
 	};
-
-	console.log("credentials", credentials);
 
 	const response = await fetch(postRegisterUrl, {
 		method: "POST",
@@ -26,8 +24,6 @@ export async function registerAction({ request }) {
 		body: JSON.stringify(credentials),
 	});
 
-	console.log("got response", response);
-
 	if (response.status === 400) {
 		toast.error("Account with that email already exists");
 		return redirect("/register");
@@ -36,12 +32,9 @@ export async function registerAction({ request }) {
 		toast.error("Could not log in");
 		return redirect("/register");
 	}
-
-	console.log("getting response data");
 	const responseData = await response.text();
-	console.log("got data", responseData);
 
-	saveToken(responseData.token);
+	saveToken(responseData);
 
 	return redirect("/");
 }
