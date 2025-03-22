@@ -33,24 +33,21 @@ public class UserService {
         MongoUser user = new MongoUser(register);
         userRepo.save(user);
 
-        return ResponseEntity.ok().body(generateJwt(credentials));
+        return generateJwt(credentials);
     }
 
-    public String generateJwt(LoginDTO credentials) {
-        System.out.println(credentials.getEmail());
-        System.out.println(credentials.getPassword());
+    public ResponseEntity<String> generateJwt(LoginDTO credentials) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(credentials.getEmail(), credentials.getPassword()));
 
         if(authentication.isAuthenticated()) {
-            return jwtService.generateToken(credentials.getEmail());
+            return ResponseEntity.ok().body(jwtService.generateToken(credentials.getEmail()));
         } else {
-            return "Login failed";
+            return ResponseEntity.badRequest().body(null);
         }
     }
 
-    public UserInfoDTO getInfo(String email) {
+    public ResponseEntity<UserInfoDTO> getInfo(String email) {
         MongoUser user = userRepo.findFirstByEmail(email);
-
-        return new UserInfoDTO(user);
+        return ResponseEntity.ok().body(new UserInfoDTO(user));
     }
 }

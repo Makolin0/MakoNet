@@ -6,7 +6,7 @@ import * as Yup from "yup";
 export default function Register() {
 	const validationSchema = Yup.object().shape({
 		email: Yup.string().required("Required").email("Wrong email"),
-		nickname: Yup.string()
+		username: Yup.string()
 			.required("Required")
 			.min(4, "Minimum 8 characters")
 			.max(16, "Maximum 16 characters"),
@@ -17,16 +17,16 @@ export default function Register() {
 			.matches(/[a-z]/, "Must contain lowercase letter")
 			.matches(/[A-Z]/, "Must contain uppercase letter")
 			.matches(/[0-9]/, "Must contain a number"),
-		retypedPassword: Yup.string()
+		confirmPassword: Yup.string()
 			.required("Required")
 			.oneOf([Yup.ref("password"), "Passwords must match"]),
 	});
 	const formik = useFormik({
 		initialValues: {
 			email: "",
-			nickname: "",
+			username: "",
 			password: "",
-			retypedPassword: "",
+			confirmPassword: "",
 		},
 		validateOnChange: true,
 		validationSchema: validationSchema,
@@ -50,17 +50,17 @@ export default function Register() {
 						onBlur={formik.handleBlur}
 						value={formik.values.email}
 					/>
-					{formik.errors.nickname && formik.touched.nickname && (
-						<p className={classes.errorInput}>{formik.errors.nickname}</p>
+					{formik.errors.username && formik.touched.username && (
+						<p className={classes.errorInput}>{formik.errors.username}</p>
 					)}
 					<input
-						id="nickname"
-						name="nickname"
+						id="username"
+						name="username"
 						type="text"
-						placeholder="Nickname"
+						placeholder="Username"
 						onChange={formik.handleChange}
 						onBlur={formik.handleBlur}
-						value={formik.values.nickname}
+						value={formik.values.username}
 					/>
 					{formik.errors.password && formik.touched.password && (
 						<p className={classes.errorInput}>{formik.errors.password}</p>
@@ -74,19 +74,19 @@ export default function Register() {
 						onBlur={formik.handleBlur}
 						value={formik.values.password}
 					/>
-					{formik.errors.retypedPassword && formik.touched.retypedPassword && (
+					{formik.errors.confirmPassword && formik.touched.confirmPassword && (
 						<p className={classes.errorInput}>
-							{formik.errors.retypedPassword}
+							{formik.errors.confirmPassword}
 						</p>
 					)}
 					<input
-						id="retypedPassword"
-						name="retypedPassword"
+						id="confirmPassword"
+						name="confirmPassword"
 						type="password"
-						placeholder="Retype password"
+						placeholder="Confirm password"
 						onChange={formik.handleChange}
 						onBlur={formik.handleBlur}
-						value={formik.values.retypedPassword}
+						value={formik.values.confirmPassword}
 					/>
 					<label>
 						<input type="checkbox" />

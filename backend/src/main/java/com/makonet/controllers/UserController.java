@@ -22,12 +22,12 @@ public class UserController {
     }
 
     @PostMapping("login")
-    public String login(@RequestBody LoginDTO credentials) {
+    public ResponseEntity<String> login(@RequestBody LoginDTO credentials) {
         return userService.generateJwt(credentials);
     }
 
     @GetMapping("info")
-    public UserInfoDTO info(@AuthenticationPrincipal UserDetails userDetails) {
+    public ResponseEntity<UserInfoDTO> info(@AuthenticationPrincipal UserDetails userDetails) {
         return userService.getInfo(userDetails.getUsername());
     }
 }
