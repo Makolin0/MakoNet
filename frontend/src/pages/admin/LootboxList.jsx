@@ -1,8 +1,8 @@
 import toast from "react-hot-toast";
 import LootboxList from "../../components/admin/LootboxList";
 import { getToken } from "../../data/tokens";
-import { getBackendUrl } from "../../data/apiLinks";
 import { redirect } from "react-router";
+import { getAdminLootboxList } from "../../data/apiLinks";
 
 export default function LootboxListAdminPage() {
 	return <LootboxList />;
@@ -10,7 +10,7 @@ export default function LootboxListAdminPage() {
 
 export async function lootboxListAdminLoader() {
 	const token = getToken();
-	const response = await fetch(getBackendUrl() + "/admin/lootbox", {
+	const response = await fetch(getAdminLootboxList, {
 		headers: {
 			Authorization: "Bearer " + token,
 		},

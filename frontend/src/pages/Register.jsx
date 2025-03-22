@@ -1,6 +1,6 @@
 import { redirect } from "react-router";
 import Register from "../components/authentication/Register";
-import { getBackendUrl } from "../data/apiLinks";
+import { postRegisterUrl } from "../data/apiLinks";
 import toast from "react-hot-toast";
 import { saveToken } from "../data/tokens";
 
@@ -8,6 +8,7 @@ export default function RegisterPage() {
 	return <Register />;
 }
 export async function registerAction({ request }) {
+	console.log("awaiting credentials");
 	const data = await request.formData();
 	const credentials = {
 		email: data.get("email"),
@@ -15,13 +16,17 @@ export async function registerAction({ request }) {
 		password: data.get("password"),
 	};
 
-	const response = await fetch(getBackendUrl() + "/auth/register", {
+	console.log("credentials", credentials);
+
+	const response = await fetch(postRegisterUrl, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify(credentials),
 	});
+
+	console.log("got response", response);
 
 	if (response.status === 400) {
 		toast.error("Account with that email already exists");
@@ -32,7 +37,9 @@ export async function registerAction({ request }) {
 		return redirect("/register");
 	}
 
-	const responseData = await response.json();
+	console.log("getting response data");
+	const responseData = await response.text();
+	console.log("got data", responseData);
 
 	saveToken(responseData.token);
 

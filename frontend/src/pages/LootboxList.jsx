@@ -21,11 +21,17 @@ export async function lootboxListLoader() {
 			return responseData;
 		}
 	} else {
+		console.log("test", getLootboxNamesUrl);
 		const response = await fetch(getLootboxNamesUrl);
+		console.log(response.status);
 		if (response.status !== 200) {
+			console.log("error");
 			return null;
 		} else {
+			console.log("response", response);
 			const responseData = await response.json();
+			console.log("responseData", responseData);
+
 			return responseData;
 		}
 	}

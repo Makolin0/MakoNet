@@ -20,6 +20,8 @@ export default function Roulette() {
 	const [lootboxData, setLootboxData] = useState(useLoaderData());
 	const loggedIn = checkToken();
 
+	console.log("roulette");
+
 	const name = lootboxData.name;
 
 	console.log("Lootbox Data", lootboxData);

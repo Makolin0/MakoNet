@@ -2,34 +2,30 @@ export const userRole = "ROLE_USER";
 export const adminRole = "ROLE_ADMIN";
 export const sigmaRole = "ROLE_SIGMA";
 
-export function getBackendUrl() {
-	if (import.meta.env.DEV) {
-		return "http://localhost:8080";
-	} else {
-		return "https://makonet-backend.onrender.com";
-	}
-}
+export const backendUrl = import.meta.env.VITE_API_BACKEND_URL;
+export const frontendUrl = import.meta.env.VITE_API_FRONTEND_URL;
 
-export const postLoginUrl = getBackendUrl() + "/user/login";
-export const postRegisterUrl = getBackendUrl() + "/user/register";
-export const getUserInfoUrl = getBackendUrl() + "/user/info";
+export const postLoginUrl = backendUrl + "/user/login";
+export const postRegisterUrl = backendUrl + "/user/register";
+export const getUserInfoUrl = backendUrl + "/user/info";
 
-export const getUserLootboxCountUrl = getBackendUrl() + "/lootbox";
-export const getLootboxNamesUrl = getBackendUrl() + "/lootbox/demo";
+export const getUserLootboxCountUrl = backendUrl + "/lootbox";
+export const getLootboxNamesUrl = backendUrl + "/lootbox/demo";
 export function postLootboxDrawDemoUrl(name) {
-	return getBackendUrl() + "/lootbox/" + name + "/demo";
+	return backendUrl + "/lootbox/" + name + "/demo";
 }
-export const postLootboxDrawUrl = (name) =>
-	getBackendUrl() + "/lootbox/" + name;
+export const postLootboxDrawUrl = (name) => backendUrl + "/lootbox/" + name;
 export function getLootboxDataUrl(name) {
-	return getBackendUrl() + "/lootbox/" + name;
+	return backendUrl + "/lootbox/" + name;
 }
 export function getLootboxNameCountUrl(name) {
-	return getBackendUrl() + "/lootbox/" + name + "/count";
+	return backendUrl + "/lootbox/" + name + "/count";
 }
 export const getLootboxNameHistoryUrl = (name) =>
-	getBackendUrl() + "/lootbox/" + name + "/history";
+	backendUrl + "/lootbox/" + name + "/history";
 
-export const getAdminUsersUrl = getBackendUrl() + "/admin/users";
-export const getAdminUserDetailsUrl = (name) =>
-	getBackendUrl() + "/admin/" + name;
+export const getAdminUsersUrl = backendUrl + "/admin/users";
+export const getAdminUserDetailsUrl = (name) => backendUrl + "/admin/" + name;
+export const getAdminLootboxList = backendUrl + "/admin/lootbox";
+export const getAdminLootboxMarkReceived =
+	backendUrl + "/admin/lootbox/receive";

@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router";
 import { getToken } from "../../data/tokens";
-import { getBackendUrl } from "../../data/apiLinks";
+import { getAdminLootboxMarkReceived } from "../../data/apiLinks";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import classes from "./List.module.css";
@@ -14,7 +14,7 @@ export default function LootboxList() {
 
 	async function markReceived(id) {
 		const token = getToken();
-		const response = await fetch(getBackendUrl() + "/admin/lootbox/receive", {
+		const response = await fetch(getAdminLootboxMarkReceived, {
 			method: "POST",
 			headers: {
 				Authorization: "Bearer " + token,

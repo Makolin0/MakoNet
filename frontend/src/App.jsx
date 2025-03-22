@@ -15,6 +15,10 @@ import LootboxListAdminPage, {
 } from "./pages/admin/LootboxList";
 import UserListAdminPage, { userListAdminLoader } from "./pages/admin/UserList";
 import UserContextProvider from "./data/UserContext";
+import { backendUrl, frontendUrl } from "./data/apiLinks";
+
+console.log("backend : ", backendUrl);
+console.log("frontend : ", frontendUrl);
 
 const router = createBrowserRouter([
 	{
