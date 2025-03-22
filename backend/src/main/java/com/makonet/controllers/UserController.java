@@ -5,6 +5,7 @@ import com.makonet.dto.user.RegisterDTO;
 import com.makonet.dto.user.UserInfoDTO;
 import com.makonet.services.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("register")
-    public String register(@RequestBody RegisterDTO register) {
+    public ResponseEntity<String> register(@RequestBody RegisterDTO register) {
         return userService.saveUser(register);
     }
 
