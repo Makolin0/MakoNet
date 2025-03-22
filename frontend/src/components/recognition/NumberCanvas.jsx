@@ -1,14 +1,10 @@
-import { useState } from "react";
 import classes from "./NumberCanvas.module.css";
 
-export default function NumberCanvas() {
-	const [data, setData] = useState(new Array(40).fill(false));
-
+export default function NumberCanvas({ data, setData }) {
 	function swapField(field) {
 		setData((prev) => {
 			const newData = [...prev];
 			newData[field] = !newData[field];
-			console.log("current", newData);
 			return newData;
 		});
 	}
