@@ -1,0 +1,8 @@
+.container {
+	background-color: var(--color-main-bg);
+	margin: 0 auto;
+	max-width: 100rem;
+	text-align: center;
+	border-radius: var(--spacing-6);
+	padding: var(--spacing-5) var(--spacing-6);
+}

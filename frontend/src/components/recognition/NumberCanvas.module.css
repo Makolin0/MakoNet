@@ -1,0 +1,13 @@
+.canvas {
+	list-style: none;
+	display: grid;
+	grid-template-columns: repeat(5, 40px);
+	grid-template-rows: repeat(8, 40px);
+}
+
+.dark {
+	background-color: black;
+}
+.light {
+	background-color: white;
+}
