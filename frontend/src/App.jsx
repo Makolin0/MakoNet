@@ -15,6 +15,7 @@ import LootboxListAdminPage, {
 } from "./pages/admin/LootboxList";
 import UserListAdminPage, { userListAdminLoader } from "./pages/admin/UserList";
 import UserContextProvider from "./data/UserContext";
+import NumberRecognitionPage from "./pages/NumberRecognition";
 
 const router = createBrowserRouter([
 	{
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
 				path: "lootbox/:name",
 				element: <LootboxPage />,
 				loader: lootboxLoader,
+			},
+			{
+				path: "numbers",
+				element: <NumberRecognitionPage />,
 			},
 			{
 				path: "admin",

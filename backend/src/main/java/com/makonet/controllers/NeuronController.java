@@ -1,12 +1,10 @@
 package com.makonet.controllers;
 
+import com.makonet.models.NumberRecognition;
 import com.makonet.services.NeuronService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
@@ -14,8 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class NeuronController {
     private final NeuronService neuronService;
 
-    @GetMapping("guess")
-    public ResponseEntity<Integer[]> guess(@RequestBody Integer[] input) {
+    @PostMapping("guess")
+    public ResponseEntity<Integer[]> guess(@RequestBody Boolean[] input) {
         return neuronService.guessDrawing(input);
+    }
+
+    @PostMapping("save")
+    public ResponseEntity<String> save(@RequestBody NumberRecognition input) {
+        return neuronService.populateData(input);
     }
 }
