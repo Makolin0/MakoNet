@@ -10,7 +10,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class Loot {
-    private String id;
     private String name;
     private String imageUrl;
 }
