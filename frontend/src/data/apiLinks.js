@@ -24,6 +24,8 @@ export function getLootboxNameCountUrl(name) {
 export const getLootboxNameHistoryUrl = (name) =>
 	backendUrl + "/lootbox/" + name + "/history";
 
+export const postDigitLearnUrl = backendUrl + "/neuron/save";
+
 export const getAdminUsersUrl = backendUrl + "/admin/users";
 export const getAdminUserDetailsUrl = (name) => backendUrl + "/admin/" + name;
 export const getAdminLootboxList = backendUrl + "/admin/lootbox";

@@ -3,6 +3,7 @@ package com.makonet.controllers;
 import com.makonet.models.NumberRecognition;
 import com.makonet.services.NeuronService;
 import lombok.AllArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,5 +21,15 @@ public class NeuronController {
     @PostMapping("save")
     public ResponseEntity<String> save(@RequestBody NumberRecognition input) {
         return neuronService.populateData(input);
+    }
+
+    @GetMapping("save")
+    public ResponseEntity<NumberRecognition[]> loadSaved(){
+        return neuronService.getSaved();
+    }
+
+    @GetMapping("train")
+    public ResponseEntity<String> train(){
+        return neuronService.train();
     }
 }
