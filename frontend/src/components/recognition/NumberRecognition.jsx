@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 export default function NumberRecognition() {
 	const [drawing, setDrawing] = useState(new Array(40).fill(false));
 	const [actualNumber, setActualNumber] = useState(0);
-	const [guessedNumber, setGuessedNumber] = useState(new Array(10).fill(0));
+	const [guessedNumber, setGuessedNumber] = useState(false);
 	const [learningData, setLearningData] = useState([]);
 
 	useEffect(() => {
@@ -58,7 +58,24 @@ export default function NumberRecognition() {
 		}
 	}
 
-	async function guessDigit() {}
+	async function guessDigit() {
+		const response = await fetch("http://localhost:8080/neuron/guess", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(drawing),
+		});
+
+		if (response.status !== 200) {
+			toast.error("Could not send data");
+		} else {
+			toast.success("Data sent succesfully");
+			const data = await response.json();
+			console.log("data", data);
+			setGuessedNumber(data);
+		}
+	}
 
 	return (
 		<main className={classes.container}>
@@ -74,20 +91,13 @@ export default function NumberRecognition() {
 				<button type="submit">submit</button>
 			</form>
 
-			<ol className={classes.list}>
-				{guessedNumber.map((value, index) => {
-					return (
-						<li key={index}>
-							{index} - {value}
-						</li>
-					);
-				})}
-			</ol>
+			<button onClick={guessDigit}>guess</button>
+
+			<ol className={classes.list}>is 0? {guessedNumber ? "yes" : "no"}</ol>
 
 			<h3>Learning</h3>
 			<ol>
 				{learningData.map((digit, index) => {
-					console.log("data", digit.drawing);
 					return (
 						<li key={index}>
 							<NumberCanvas data={digit.drawing} />
