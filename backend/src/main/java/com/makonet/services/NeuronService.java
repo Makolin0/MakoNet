@@ -15,10 +15,14 @@ public class NeuronService {
     private final NumberRecognitionDataRepository dataRepo;
 
     private List<List<Float>> neurons = new ArrayList<>();
-    private final float learnConstant = 0.01f;
+    private final float learnConstant = 0.005f;
+    private final int revisions = 30;
 
 
     public ResponseEntity<Boolean[]> guessDrawing(Boolean[] input) {
+        if(neurons.isEmpty()) {
+            train();
+        }
         return ResponseEntity.ok().body(findDigit(input));
     }
 
@@ -37,10 +41,15 @@ public class NeuronService {
 
 
         // learning eras
-        for(int era = 0; era < 10; era++) {
+        for(int era = 0; era < revisions; era++) {
             // for each training data
             for (NumberRecognition input : trainingData) {
-                
+                // changing random pixel
+//                if(Math.random() > 0.95) {
+//                    int rand = (int) (Math.random() * input.getDrawing().length);
+//                    input.getDrawing()[rand] = !input.getDrawing()[rand];
+//                }
+
                 // summing weights on first training data
                 Boolean[] result = findDigit(input.getDrawing());
 

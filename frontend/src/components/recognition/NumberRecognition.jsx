@@ -107,12 +107,12 @@ export default function NumberRecognition() {
 				{showLearningData ? "Hide" : "Show"}
 			</button>
 			{showLearningData && (
-				<ol>
+				<ol className={classes.dataContainer}>
 					{learningData.map((digit, index) => {
 						return (
 							<li key={index}>
 								<NumberCanvas data={digit.drawing} />
-								{digit.number}
+								<p>{digit.number}</p>
 							</li>
 						);
 					})}
