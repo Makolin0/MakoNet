@@ -6,9 +6,10 @@ import toast from "react-hot-toast";
 
 export default function NumberRecognition() {
 	const [drawing, setDrawing] = useState(new Array(40).fill(false));
-	const [actualNumber, setActualNumber] = useState(0);
-	const [guessedNumber, setGuessedNumber] = useState(false);
+	// const [actualNumber, setActualNumber] = useState(0);
+	const [guessedNumber, setGuessedNumber] = useState(new Array(10).fill(false));
 	const [learningData, setLearningData] = useState([]);
+	const [showLearningData, setShowLearningData] = useState(false);
 
 	useEffect(() => {
 		async function getLearningData() {
@@ -22,7 +23,6 @@ export default function NumberRecognition() {
 			if (response.status !== 200) {
 				toast.error("Could not get learn data");
 			} else {
-				toast.success("Got learn data");
 				const data = await response.json();
 				console.log(data);
 				setLearningData(data);
@@ -31,34 +31,34 @@ export default function NumberRecognition() {
 		getLearningData();
 	}, []);
 
-	async function saveToLearn(event) {
-		event.preventDefault();
-		const NumberPackage = {
-			drawing: drawing,
-			number: actualNumber,
-		};
-		console.log("package", NumberPackage);
+	// async function saveToLearn(event) {
+	// 	event.preventDefault();
+	// 	const NumberPackage = {
+	// 		drawing: drawing,
+	// 		number: actualNumber,
+	// 	};
+	// 	console.log("package", NumberPackage);
 
-		const response = await fetch(postDigitLearnUrl, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(NumberPackage),
-		});
+	// 	const response = await fetch(postDigitLearnUrl, {
+	// 		method: "POST",
+	// 		headers: {
+	// 			"Content-Type": "application/json",
+	// 		},
+	// 		body: JSON.stringify(NumberPackage),
+	// 	});
 
-		if (response.status !== 200) {
-			toast.error("Could not send data");
-		} else {
-			toast.success("Data sent succesfully");
-			setLearningData((prev) => {
-				const newData = [...prev, NumberPackage];
-				return newData;
-			});
-		}
-	}
+	// 	if (response.status !== 200) {
+	// 		toast.error("Could not send data");
+	// 	} else {
+	// 		setLearningData((prev) => {
+	// 			const newData = [...prev, NumberPackage];
+	// 			return newData;
+	// 		});
+	// 	}
+	// }
 
 	async function guessDigit() {
+		console.log(drawing);
 		const response = await fetch("http://localhost:8080/neuron/guess", {
 			method: "POST",
 			headers: {
@@ -70,7 +70,6 @@ export default function NumberRecognition() {
 		if (response.status !== 200) {
 			toast.error("Could not send data");
 		} else {
-			toast.success("Data sent succesfully");
 			const data = await response.json();
 			console.log("data", data);
 			setGuessedNumber(data);
@@ -82,30 +81,41 @@ export default function NumberRecognition() {
 			<h1>Number Recognition</h1>
 			<NumberCanvas data={drawing} setData={setDrawing} />
 
-			<form onSubmit={saveToLearn}>
+			{/* <form onSubmit={saveToLearn}>
 				<label>Actual digit</label>
 				<input
 					value={actualNumber}
 					onChange={(event) => setActualNumber(event.target.value)}
 				/>
 				<button type="submit">submit</button>
-			</form>
+			</form> */}
 
 			<button onClick={guessDigit}>guess</button>
 
-			<ol className={classes.list}>is 0? {guessedNumber ? "yes" : "no"}</ol>
-
-			<h3>Learning</h3>
-			<ol>
-				{learningData.map((digit, index) => {
-					return (
-						<li key={index}>
-							<NumberCanvas data={digit.drawing} />
-							{digit.number}
-						</li>
-					);
-				})}
+			<ol className={classes.list}>
+				{guessedNumber.map((isIndex, index) => (
+					<li key={index}>
+						is {index}: {isIndex ? "yes" : "no"}
+					</li>
+				))}
 			</ol>
+
+			<h3>Learning data</h3>
+			<button onClick={() => setShowLearningData((prev) => !prev)}>
+				{showLearningData ? "Hide" : "Show"}
+			</button>
+			{showLearningData && (
+				<ol>
+					{learningData.map((digit, index) => {
+						return (
+							<li key={index}>
+								<NumberCanvas data={digit.drawing} />
+								{digit.number}
+							</li>
+						);
+					})}
+				</ol>
+			)}
 		</main>
 	);
 }

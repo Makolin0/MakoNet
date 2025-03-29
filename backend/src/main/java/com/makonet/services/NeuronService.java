@@ -2,9 +2,7 @@ package com.makonet.services;
 
 import com.makonet.models.NumberRecognition;
 import com.makonet.repository.NumberRecognitionDataRepository;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -16,52 +14,43 @@ import java.util.List;
 public class NeuronService {
     private final NumberRecognitionDataRepository dataRepo;
 
-    private List<List<Float>> neurons0 = new ArrayList<>();
-    private float learnConstant = 0.03f;
+    private List<List<Float>> neurons = new ArrayList<>();
+    private final float learnConstant = 0.01f;
 
 
-    public ResponseEntity<Boolean> guessDrawing(Boolean[] input) {
-        // summing weights
-        float result = 0;
-        for (int i = 0; i < input.length; i++) {
-            result += neurons0.getFirst().get(i) * (input[i] ? 1 : -1);
-        }
-
-        // activate function
-        Boolean is0 = result > 0;
-
-        return ResponseEntity.ok().body(is0);
+    public ResponseEntity<Boolean[]> guessDrawing(Boolean[] input) {
+        return ResponseEntity.ok().body(findDigit(input));
     }
 
     public ResponseEntity<String> train() {
         List<NumberRecognition> trainingData = dataRepo.findAll();
 
-        // generating low starting weights
-        neurons0.clear();
-        List<Float> weights = new ArrayList<>();
-        for(int i = 0; i < trainingData.getFirst().getDrawing().length; i++) {
-            weights.add((float) (0.01 + Math.random() * 0.04));
+        // generating low starting weights for each neuron
+        neurons.clear();
+        for(int digit = 0; digit < 10; digit++) {
+            List<Float> weights = new ArrayList<>();
+            for (int i = 0; i < trainingData.getFirst().getDrawing().length; i++) {
+                weights.add((float) (0.01 + Math.random() * 0.04));
+            }
+            neurons.add(weights);
         }
-        neurons0.add(weights);
 
 
-        for(int n = 0; n < 10; n++) {
+        // learning eras
+        for(int era = 0; era < 10; era++) {
             // for each training data
-            for (NumberRecognition digit : trainingData) {
+            for (NumberRecognition input : trainingData) {
                 // summing weights on first training data
-                float result = 0;
-                for (int i = 0; i < digit.getDrawing().length; i++) {
-                    result += neurons0.getFirst().get(i) * (digit.getDrawing()[i] ? 1 : -1);
-                }
+                Boolean[] result = findDigit(input.getDrawing());
 
-                // activate function
-                boolean is0 = result > 0;
-
-                // checks if correct
-                if ((digit.getNumber() == 0) != (is0)) {
-                    for (int i = 0; i < digit.getDrawing().length; i++) {
+                // checks if correct for every digit
+                for(int digit = 0; digit < 10; digit++) {
+                    // if guessed wrong
+                    if ((input.getNumber() == digit) != (result[digit])) {
                         // updates weights
-                        neurons0.getFirst().set(i, neurons0.getFirst().get(i) + learnConstant * (digit.getDrawing()[i] ? 1 : -1) * (digit.getNumber() == 0 ? 1 : -1));
+                        for (int i = 0; i < input.getDrawing().length; i++) {
+                            neurons.get(digit).set(i, neurons.get(digit).get(i) + learnConstant * (input.getDrawing()[i] ? 1 : -1) * (input.getNumber() == digit ? 1 : -1));
+                        }
                     }
                 }
             }
@@ -69,17 +58,14 @@ public class NeuronService {
             int errors = 0;
             for (NumberRecognition digit : trainingData) {
                 // summing weights
-                float result = 0;
-                for (int i = 0; i < digit.getDrawing().length; i++) {
-                    result += neurons0.getFirst().get(i) * (digit.getDrawing()[i] ? 1 : -1);
+                Boolean[] result = findDigit(digit.getDrawing());
+
+                for(int i = 0; i < 10; i++){
+                    if ((digit.getNumber() == i) != (result[i])) {
+                        errors++;
+                    }
                 }
 
-                // activate function
-                boolean is0 = result > 0;
-
-                if ((digit.getNumber() == 0) != (is0)) {
-                    errors++;
-                }
             }
 
             System.out.println("Errors: " + errors);
@@ -97,5 +83,21 @@ public class NeuronService {
     public ResponseEntity<NumberRecognition[]> getSaved() {
         NumberRecognition[] data = dataRepo.findAll().toArray(new NumberRecognition[0]);
         return ResponseEntity.ok().body(data);
+    }
+
+    private Boolean[] findDigit(Boolean[] input) {
+        Boolean[] result = new Boolean[10];
+
+        for(int digit = 0; digit < 10; digit++) {
+            float sum = 0;
+            for (int i = 0; i < input.length; i++) {
+                sum += neurons.get(digit).get(i) * (input[i] ? 1 : -1);
+            }
+
+            // activate function
+            result[digit] = sum > 0;
+        }
+
+        return result;
     }
 }

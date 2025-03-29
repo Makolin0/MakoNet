@@ -14,7 +14,7 @@ public class NeuronController {
     private final NeuronService neuronService;
 
     @PostMapping("guess")
-    public ResponseEntity<Boolean> guess(@RequestBody Boolean[] input) {
+    public ResponseEntity<Boolean[]> guess(@RequestBody Boolean[] input) {
         return neuronService.guessDrawing(input);
     }
 
