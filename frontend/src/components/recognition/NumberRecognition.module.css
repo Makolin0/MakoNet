@@ -10,3 +10,18 @@
 .list {
 	list-style: none;
 }
+
+.guessContainer {
+	display: flex;
+	justify-content: center;
+	gap: var(--spacing-8);
+	align-items: center;
+}
+
+.guessContainer > button {
+	background-color: var(--color-main);
+	padding: var(--spacing-3) var(--spacing-5);
+	font-size: var(--font-5);
+	border-radius: var(--spacing-3);
+	border: 0;
+}

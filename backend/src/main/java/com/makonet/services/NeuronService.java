@@ -40,6 +40,7 @@ public class NeuronService {
         for(int era = 0; era < 10; era++) {
             // for each training data
             for (NumberRecognition input : trainingData) {
+                
                 // summing weights on first training data
                 Boolean[] result = findDigit(input.getDrawing());
 

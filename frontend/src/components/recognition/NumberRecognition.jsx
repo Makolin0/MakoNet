@@ -79,9 +79,10 @@ export default function NumberRecognition() {
 	return (
 		<main className={classes.container}>
 			<h1>Number Recognition</h1>
-			<NumberCanvas data={drawing} setData={setDrawing} />
+			<div className={classes.guessContainer}>
+				<NumberCanvas data={drawing} setData={setDrawing} />
 
-			{/* <form onSubmit={saveToLearn}>
+				{/* <form onSubmit={saveToLearn}>
 				<label>Actual digit</label>
 				<input
 					value={actualNumber}
@@ -90,15 +91,16 @@ export default function NumberRecognition() {
 				<button type="submit">submit</button>
 			</form> */}
 
-			<button onClick={guessDigit}>guess</button>
+				<button onClick={guessDigit}>guess</button>
 
-			<ol className={classes.list}>
-				{guessedNumber.map((isIndex, index) => (
-					<li key={index}>
-						is {index}: {isIndex ? "yes" : "no"}
-					</li>
-				))}
-			</ol>
+				<ol className={classes.list}>
+					{guessedNumber.map((isIndex, index) => (
+						<li key={index}>
+							{index}: {isIndex ? "yes" : "no"}
+						</li>
+					))}
+				</ol>
+			</div>
 
 			<h3>Learning data</h3>
 			<button onClick={() => setShowLearningData((prev) => !prev)}>
