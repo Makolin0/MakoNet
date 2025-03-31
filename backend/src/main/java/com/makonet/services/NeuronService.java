@@ -1,5 +1,6 @@
 package com.makonet.services;
 
+import com.makonet.dto.neuron.TrainNeuronDTO;
 import com.makonet.models.NumberRecognition;
 import com.makonet.repository.NumberRecognitionDataRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,41 +15,42 @@ import java.util.List;
 public class NeuronService {
     private final NumberRecognitionDataRepository dataRepo;
 
-    private List<List<Float>> neurons = new ArrayList<>();
-    private final float learnConstant = 0.005f;
-    private final int revisions = 30;
+    private List<List<Double>> neurons = new ArrayList<>();
 
 
     public ResponseEntity<Boolean[]> guessDrawing(Boolean[] input) {
         if(neurons.isEmpty()) {
-            train();
+            train(new TrainNeuronDTO(20, 0.05, 0.05, 1));
         }
         return ResponseEntity.ok().body(findDigit(input));
     }
 
-    public ResponseEntity<String> train() {
+    public ResponseEntity<String> train(TrainNeuronDTO parameters) {
         List<NumberRecognition> trainingData = dataRepo.findAll();
 
         // generating low starting weights for each neuron
         neurons.clear();
         for(int digit = 0; digit < 10; digit++) {
-            List<Float> weights = new ArrayList<>();
+            List<Double> weights = new ArrayList<>();
             for (int i = 0; i < trainingData.getFirst().getDrawing().length; i++) {
-                weights.add((float) (0.01 + Math.random() * 0.04));
+                weights.add(0.01 + Math.random() * 0.04);
             }
             neurons.add(weights);
         }
 
 
         // learning eras
-        for(int era = 0; era < revisions; era++) {
+        System.out.println("Learning parameters: " + parameters);
+        for(int epoch = 0; epoch < parameters.getEpoch(); epoch++) {
             // for each training data
             for (NumberRecognition input : trainingData) {
-                // changing random pixel
-//                if(Math.random() > 0.95) {
-//                    int rand = (int) (Math.random() * input.getDrawing().length);
-//                    input.getDrawing()[rand] = !input.getDrawing()[rand];
-//                }
+//                 changing random pixel
+                if(Math.random() < parameters.getRandomChance()) {
+                    for(int i = 0; i < parameters.getRandomPixels(); i++){
+                        int rand = (int) (Math.random() * input.getDrawing().length);
+                        input.getDrawing()[rand] = !input.getDrawing()[rand];
+                    }
+                }
 
                 // summing weights on first training data
                 Boolean[] result = findDigit(input.getDrawing());
@@ -59,7 +61,7 @@ public class NeuronService {
                     if ((input.getNumber() == digit) != (result[digit])) {
                         // updates weights
                         for (int i = 0; i < input.getDrawing().length; i++) {
-                            neurons.get(digit).set(i, neurons.get(digit).get(i) + learnConstant * (input.getDrawing()[i] ? 1 : -1) * (input.getNumber() == digit ? 1 : -1));
+                            neurons.get(digit).set(i, neurons.get(digit).get(i) + parameters.getLearningRate() * (input.getDrawing()[i] ? 1 : -1) * (input.getNumber() == digit ? 1 : -1));
                         }
                     }
                 }
@@ -78,7 +80,7 @@ public class NeuronService {
 
             }
 
-            System.out.println("Errors: " + errors);
+            System.out.println("epoch " + epoch + " - Errors: " + errors);
         }
 
 
@@ -99,7 +101,7 @@ public class NeuronService {
         Boolean[] result = new Boolean[10];
 
         for(int digit = 0; digit < 10; digit++) {
-            float sum = 0;
+            double sum = 0.0;
             for (int i = 0; i < input.length; i++) {
                 sum += neurons.get(digit).get(i) * (input[i] ? 1 : -1);
             }

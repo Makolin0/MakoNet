@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import NumberCanvas from "./NumberCanvas";
 import classes from "./NumberRecognition.module.css";
-import { postDigitLearnUrl } from "../../data/apiLinks";
+import { postDigitLearnUrl, postTrainNeuron } from "../../data/apiLinks";
 import toast from "react-hot-toast";
 
 export default function NumberRecognition() {
@@ -10,6 +10,12 @@ export default function NumberRecognition() {
 	const [guessedNumber, setGuessedNumber] = useState(new Array(10).fill(false));
 	const [learningData, setLearningData] = useState([]);
 	const [showLearningData, setShowLearningData] = useState(false);
+	const [trainingData, setTrainingData] = useState({
+		epoch: 20,
+		learningRate: 0.05,
+		randomChance: 0.05,
+		randomPixels: 1,
+	});
 
 	useEffect(() => {
 		async function getLearningData() {
@@ -56,6 +62,24 @@ export default function NumberRecognition() {
 	// 		});
 	// 	}
 	// }
+	async function trainNeurons(event) {
+		event.preventDefault();
+		console.log("package", trainingData);
+
+		const response = await fetch(postTrainNeuron, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(trainingData),
+		});
+
+		if (response.status !== 200) {
+			toast.error("Training error.");
+		} else {
+			toast.success("Training done.");
+		}
+	}
 
 	async function guessDigit() {
 		console.log(drawing);
@@ -101,6 +125,53 @@ export default function NumberRecognition() {
 					))}
 				</ol>
 			</div>
+
+			<h3>Train</h3>
+			<form onSubmit={trainNeurons} className={classes.trainForm}>
+				<div>
+					<label>Epochs</label>
+					<input
+						value={trainingData.epoch}
+						onChange={(event) =>
+							setTrainingData((prev) => ({
+								...prev,
+								epoch: event.target.value,
+							}))
+						}
+					/>
+					<label>Learning rate</label>
+					<input
+						value={trainingData.learningRate}
+						onChange={(event) =>
+							setTrainingData((prev) => ({
+								...prev,
+								learningRate: event.target.value,
+							}))
+						}
+					/>
+					<label>Random chance</label>
+					<input
+						value={trainingData.randomChance}
+						onChange={(event) =>
+							setTrainingData((prev) => ({
+								...prev,
+								randomChance: event.target.value,
+							}))
+						}
+					/>
+					<label>Random pixels</label>
+					<input
+						value={trainingData.randomPixels}
+						onChange={(event) =>
+							setTrainingData((prev) => ({
+								...prev,
+								randomPixels: event.target.value,
+							}))
+						}
+					/>
+				</div>
+				<button type="submit">submit</button>
+			</form>
 
 			<h3>Learning data</h3>
 			<button onClick={() => setShowLearningData((prev) => !prev)}>

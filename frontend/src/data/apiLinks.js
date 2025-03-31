@@ -25,6 +25,7 @@ export const getLootboxNameHistoryUrl = (name) =>
 	backendUrl + "/lootbox/" + name + "/history";
 
 export const postDigitLearnUrl = backendUrl + "/neuron/save";
+export const postTrainNeuron = backendUrl + "/neuron/train";
 
 export const getAdminUsersUrl = backendUrl + "/admin/users";
 export const getAdminUserDetailsUrl = (name) => backendUrl + "/admin/" + name;

@@ -1,5 +1,6 @@
 package com.makonet.controllers;
 
+import com.makonet.dto.neuron.TrainNeuronDTO;
 import com.makonet.models.NumberRecognition;
 import com.makonet.services.NeuronService;
 import lombok.AllArgsConstructor;
@@ -28,8 +29,8 @@ public class NeuronController {
         return neuronService.getSaved();
     }
 
-    @GetMapping("train")
-    public ResponseEntity<String> train(){
-        return neuronService.train();
+    @PostMapping("train")
+    public ResponseEntity<String> train(@RequestBody TrainNeuronDTO input) {
+        return neuronService.train(input);
     }
 }

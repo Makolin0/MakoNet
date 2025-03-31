@@ -40,3 +40,20 @@
 	gap: var(--spacing-6);
 	font-size: var(--font-11);
 }
+
+.trainForm > div {
+	display: grid;
+	grid-template-columns: 50% 50%;
+	justify-content: center;
+	gap: var(--spacing-2) var(--spacing-4);
+}
+.trainForm > div > label {
+	justify-self: end;
+}
+.trainForm > button {
+	background-color: var(--color-main);
+	padding: var(--spacing-3) var(--spacing-5);
+	font-size: var(--font-5);
+	border-radius: var(--spacing-3);
+	border: 0;
+}
