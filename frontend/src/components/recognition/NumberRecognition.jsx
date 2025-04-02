@@ -100,6 +100,7 @@ export default function NumberRecognition() {
 		}
 	}
 
+
 	return (
 		<main className={classes.container}>
 			<h1>Number Recognition</h1>
@@ -125,6 +126,7 @@ export default function NumberRecognition() {
 					))}
 				</ol>
 			</div>
+			<button onClick={()=>setDrawing(new Array(40).fill(false))}>Clear</button>
 
 			<h3>Train</h3>
 			<form onSubmit={trainNeurons} className={classes.trainForm}>
