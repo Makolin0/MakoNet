@@ -23,8 +23,8 @@ services:
     build:
       context: ./frontend
       args:
-        - VITE_API_BACKEND_URL=http://localhost:4001
-        - VITE_API_FRONTEND_URL=http://localhost:4000
+        - VITE_API_BACKEND_URL=http://192.168.10.3:4001
+        - VITE_API_FRONTEND_URL=http://192.168.10.3:4000
     ports:
       - 4000:80
     volumes:

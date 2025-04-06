@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import NumberCanvas from "./NumberCanvas";
 import classes from "./NumberRecognition.module.css";
-import { postDigitLearnUrl, postTrainNeuron } from "../../data/apiLinks";
+import { postDigitLearnUrl, postGuessDigit, postTrainNeuron } from "../../data/apiLinks";
 import toast from "react-hot-toast";
 
 export default function NumberRecognition() {
@@ -83,7 +83,7 @@ export default function NumberRecognition() {
 
 	async function guessDigit() {
 		console.log(drawing);
-		const response = await fetch("http://localhost:8080/neuron/guess", {
+		const response = await fetch(postGuessDigit, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -128,7 +128,7 @@ export default function NumberRecognition() {
 			</div>
 			<button onClick={()=>setDrawing(new Array(40).fill(false))}>Clear</button>
 
-			<h3>Train</h3>
+			{/* <h3>Train</h3>
 			<form onSubmit={trainNeurons} className={classes.trainForm}>
 				<div>
 					<label>Epochs</label>
@@ -173,7 +173,7 @@ export default function NumberRecognition() {
 					/>
 				</div>
 				<button type="submit">submit</button>
-			</form>
+			</form> */}
 
 			<h3>Learning data</h3>
 			<button onClick={() => setShowLearningData((prev) => !prev)}>

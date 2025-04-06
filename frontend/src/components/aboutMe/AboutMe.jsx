@@ -13,14 +13,13 @@ export default function AboutMe() {
 							Computer science a topic that’s always piqued my curiosity, and
 							it's really exciting for me. I like to learn everything there is
 							to know about computers, and make them do what I want. Currently,
-							I’m a student at Nicolaus Copernicus University in Toruń, 3rd year
-							in Computer Science. I’m about to get my Engineering degree,
-							though I'm going to get my Master’s in one go.
+							I’m a student at Nicolaus Copernicus University in Toruń, 1st year
+							in Computer Science, master's degree.
 						</p>
 					</div>
 					<img
 						className={classes.picture}
-						src="me-cool.png"
+						src="me-cool.jpg"
 						alt="picture of me"
 					/>
 				</section>
