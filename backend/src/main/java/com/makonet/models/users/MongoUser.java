@@ -27,7 +27,6 @@ public class MongoUser {
     private UserLootbox userLootbox;
 
     public MongoUser(RegisterDTO registerDTO) {
-
         this.username = registerDTO.getUsername();
         this.email = registerDTO.getEmail();
         this.password = registerDTO.getPassword();

@@ -10,6 +10,7 @@ export default function Projects() {
 					name="lootbox"
 					description="Lootboxes system for minecraft server"
 				/>
+				<Project name="numbers" description="Recognize number from drawing" />
 			</ul>
 		</main>
 	);
